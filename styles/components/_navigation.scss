@@ -1,0 +1,29 @@
+.mobile-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 390px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    background: rgba(246, 246, 246, 1);
+    border: 0.3px solid rgba(102, 112, 133, 1);
+    border-radius: 6px;
+
+    & > div {
+        @extend %title-10;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        cursor: pointer;
+    }
+
+  }

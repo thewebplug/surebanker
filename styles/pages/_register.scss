@@ -24,7 +24,7 @@
       border-radius: 40px;
       background: rgba(255, 255, 255, 0.19);
       backdrop-filter: blur(5px);
-      padding: 24px;
+      padding: 24px 35px;
 
       &__title {
         @extend %title-48;
@@ -38,6 +38,27 @@
         margin-bottom: 24px;
       }
 
+      &__dots {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+
+        & > div {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #FFF;
+        }
+
+        &__dot-active {
+          width: 32px !important;
+          border-radius: 5.5px !important;
+          background: var(--Linear, linear-gradient(176deg, #206DB0 -27.44%, #0072BB 115.12%)) !important;
+        }
+      }
+
       &__navigation {
         width: 100%;
         display: flex;
@@ -45,6 +66,19 @@
         justify-content: end;
         gap: 16px;
       }
+    }
+  }
+
+  &__card1-forgot {
+    background: url("/assets/forgot-bg.png") !important;
+
+    .register__card1__slide {
+      max-width: 460px;
+      padding: 70px 35px;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 
@@ -188,6 +222,35 @@
           font-weight: 600;
         }
       }
+
+      &__forgot {
+        @extend %title-14;
+        font-weight: 400;
+        color: #161616;
+        font-style: italic;
+        margin-top: 24px;
+        margin-bottom: 43px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      &__info {
+        @extend %title-12;
+        font-weight: 400;
+        color: #8D8D8D;
+        margin-bottom: 10px;
+
+        & > a {
+          text-decoration: underline;
+          color: #004B88;
+        }
+      }
+
+      &__copy {
+        @extend %title-12;
+        color: #161616;
+        font-weight: 400;
+      }
     }
   }
 
@@ -244,7 +307,7 @@ cursor: pointer;
       }
 
       &__info {
-        @extend %title-12;
+        @extend %title-14;
         font-weight: 400;
         color: #004B88;
         line-height: 166.667%;
@@ -282,3 +345,4 @@ cursor: pointer;
     }
   }
 }
+

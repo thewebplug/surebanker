@@ -1,0 +1,259 @@
+.dashboard-header {
+  width: 100%;
+  max-width: 430px;
+
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+
+  & > :first-child {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    & > :last-child {
+      @extend %title-12;
+      font-weight: 400;
+      & > span {
+        font-weight: 700;
+      }
+    }
+  }
+
+  & > :last-child {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    & > :last-child {
+      width: 33px;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 6px solid #f2faff;
+    }
+  }
+}
+
+.dashboard-main {
+  width: 100%;
+  max-width: 430px;
+
+  margin: auto;
+  padding: 20px;
+  &__title {
+    @extend %title-14;
+    color: rgba(102, 112, 133, 1);
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  &__subtitle {
+    @extend %title-30;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: rgba(0, 0, 0, 1);
+    margin-bottom: 20px;
+
+    & > :first-child {
+      & > span {
+        @extend %title-14;
+        color: rgba(82, 82, 82, 1);
+      }
+    }
+
+    &__icon {
+      width: 32px;
+      height: 32px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    &__card {
+      @extend %title-10;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      width: 75px;
+      height: 80px;
+      background: rgba(245, 245, 245, 1);
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+      color: rgba(0, 0, 0, 1);
+      cursor: pointer;
+    }
+  }
+
+  &__credit-cards {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    overflow-x: auto;
+    margin-bottom: 40px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__card {
+      position: relative;
+      min-width: 250px;
+      height: 120px;
+
+      &__title {
+        @extend %title-8;
+        font-family: Nunito;
+        position: absolute;
+        color: rgba(222, 222, 222, 1);
+        left: 19px;
+        bottom: 9px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        &__title {
+          font-weight: 700;
+        }
+        &__subtitle {
+          font-weight: 300;
+          margin-bottom: 4px;
+        }
+      }
+    }
+
+    & > :last-child {
+      .dashboard-main__credit-cards__card__title {
+        left: 63px;
+      }
+    }
+  }
+
+  &__beneficiaries {
+    margin-bottom: 44px;
+    &__title {
+      @extend %title-16;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: rgba(0, 0, 0, 1);
+    }
+    &__cards {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      & > div {
+        // @extend
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+    }
+  }
+
+  &__transactions {
+    margin-bottom: 10px;
+    &__title {
+      @extend %title-16;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: rgba(0, 0, 0, 1);
+    }
+
+    &__cards {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      &__card {
+        width: 166px;
+        height: 84px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 1);
+        padding: 10px;
+        border-radius: 4px;
+
+        &__title {
+          @extend %title-10;
+          font-weight: 300;
+          color: rgba(0, 0, 0, 1);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          & > :first-child {
+            display: flex;
+            align-items: center;
+          }
+          & > :last-child {
+            & > span {
+              @extend %title-8;
+              font-family: Nunito;
+              font-weight: 700;
+              color: rgba(0, 0, 0, 1);
+            }
+          }
+        }
+
+        &__subtitle {
+          @extend %title-24;
+          font-weight: 700;
+          color: rgba(0, 0, 0, 1);
+          margin-bottom: 6.5px;
+
+          & > span {
+            @extend %title-14;
+            color: rgba(82, 82, 82, 1);
+          }
+        }
+        &__subsubtitle {
+          font-family: Nunito;
+          font-size: 6px;
+          font-weight: 300;
+          color: rgba(0, 0, 0, 1);
+        }
+      }
+
+      & > :first-child {
+        border: 0.2px solid rgba(11, 255, 103, 1);
+      }
+
+      & > :last-child {
+        border: 0.2px solid rgba(255, 11, 11, 1);
+      }
+    }
+  }
+
+  &__history {
+    @extend %title-10;
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: Nunito;
+    margin-bottom: 35px;
+    cursor: pointer;
+
+    & > :nth-child(even) {
+      font-weight: 700;
+    }
+  }
+}

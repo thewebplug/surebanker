@@ -25,4 +25,34 @@
       }
     }
 }
+.action-button, %action-button {
+    width: 100%;
+    height: 50px;
+    border-radius: var(--8, 8px);
+    background: rgba(68, 64, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    transition: 0.4s;
+    font-family: Raleway;
+    border: none;
+    outline: none;
+
+    &:hover {
+        background: none;
+      border-radius: var(--8, 8px);
+      border: 1px solid #00234f;
+      color: #00234f;
+
+      & > svg {
+        & > path {
+            fill: #00234f;
+        }
+      }
+    }
+}
 

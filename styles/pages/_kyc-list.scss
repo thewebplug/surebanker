@@ -1,0 +1,105 @@
+.kyc-list {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    margin: auto;
+    padding: 20px;
+    &__nav {
+      @extend %title-14;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 42px;
+    }
+    &__banner {
+      position: relative;
+      width: 100%;
+      height: 118px;
+      border-radius: 4px;
+      margin-bottom: 22px;
+      padding: 14px;
+  
+      &__title {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(52, 64, 84, 1);
+        margin-bottom: 4px;
+      }
+
+      &__subtitle {
+        @extend %title-12;
+        font-weight: 700;
+        color: rgba(52, 64, 84, 1);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 4px;
+
+        & >:last-child {
+            display: flex;
+            align-items: center;
+            gap: 8.5px;
+            background: rgba(217, 217, 217, 1);
+            padding: 4px;
+            border-radius: 20px;
+            padding-right: 8px;
+            & >:first-child {
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background: rgba(33, 33, 33, 1);
+
+            }
+        }
+        
+      }
+      
+      &__subsubtitle {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(102, 112, 133, 1);
+        line-height: 13.64px;
+      }
+  
+     
+    }
+
+    &__title {
+        @extend %title-10;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 16px;
+    }
+
+    &__card {
+        width: 100%;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 8px;
+        border-radius: 6px;
+        background: rgba(240, 240, 240, 1);
+        margin-bottom: 30px;
+
+        & >:first-child {
+            @extend %title-12;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 1);
+display: flex;
+align-items: center;
+gap: 11px;
+        }
+
+        & >:last-child {
+            @extend %title-10;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    }
+}

@@ -47,7 +47,13 @@ export default function Register() {
           <div className="register__card1__slide__subtitle">
             Bank with Confidence, Wherever You Are
           </div>
+          <div className="register__card1__slide__dots">
+            <div className="register__card1__slide__dots__dot-active">
 
+            </div>
+            <div></div>
+            <div></div>
+          </div>
           <div className="register__card1__slide__navigation">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="20" cy="20" r="19.5" fill="black" fill-opacity="0.19" stroke="#FFF5F5"/>
@@ -213,10 +219,10 @@ A valid ID
 <path fill-rule="evenodd" clip-rule="evenodd" d="M43.7071 24.2929C44.0976 24.6834 44.0976 25.3166 43.7071 25.7071L29.7071 39.7071C29.3166 40.0976 28.6834 40.0976 28.2929 39.7071L21.2929 32.7071C20.9024 32.3166 20.9024 31.6834 21.2929 31.2929C21.6834 30.9024 22.3166 30.9024 22.7071 31.2929L29 37.5858L42.2929 24.2929C42.6834 23.9024 43.3166 23.9024 43.7071 24.2929Z" fill="white"/>
 </svg>
 
-        <div className="register__card2__card__title">
+        <div className="register__card2__card__title center">
         Account Creation Successful
         </div>
-      <div className="register__card2__card__subtitle">
+      <div className="register__card2__card__subtitle center">
       Congrats your account was successfully created
         </div>
         </>
