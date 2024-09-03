@@ -36,7 +36,7 @@ jobs:
 
     - name: Decode SSH Key
       run: |
-        echo "${{ secrets.SSH_KEY }}" | base64 --decode > /tmp/ssh_key
+        echo "${{ secrets.DEV_SSH_KEY }}" | base64 --decode > /tmp/ssh_key
         chmod 600 /tmp/ssh_key
       shell: bash
 
