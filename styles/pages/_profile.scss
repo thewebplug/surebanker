@@ -20,6 +20,7 @@
             align-items: start;
             justify-content: space-between;
             margin-bottom: 23px;
+            cursor: pointer;
 
             &>:first-child {
                 display: flex;
@@ -45,6 +46,7 @@
         &__mfa {
             &__nav {
                 margin-bottom: 20px;
+                cursor: pointer;
             }
 
             &__title {

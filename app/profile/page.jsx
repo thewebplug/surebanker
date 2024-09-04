@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Navigation from "../components/navigation";
 import ProfileHeader from "../components/profile-header";
@@ -49,7 +51,9 @@ export default function Profile() {
           </svg>
         </div>
         <div className="profile__inner__title">Security</div>
-        <div className="profile__inner__group">
+        <div className="profile__inner__group"
+        onClick={() => window.location.href = "/profile/mfa"}
+        >
           <div>
             <Image src="/assets/2fa.png" width={20} height={26.58} />
 
