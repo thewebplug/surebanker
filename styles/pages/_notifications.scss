@@ -1,0 +1,58 @@
+.notifications {
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__header {
+        @extend %title-12;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 18px;
+    }
+
+    &__title {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(28, 68, 134, 1);
+        margin-bottom: 10px;
+    }
+
+    &__card {
+        @extend %title-10;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        border: 0.1px solid rgba(200, 201, 205, 1);
+        background: rgba(250, 250, 250, 1);
+        border-radius: 6px;
+        padding:  0 14px;
+        margin-bottom: 10px;
+
+        &__title {
+           font-weight: 700;
+           color: rgba(102, 112, 133, 1);
+           margin-bottom: 8px; 
+        }
+        &__subtitle {
+           font-weight: 300;
+           color: rgba(152, 149, 149, 1);
+
+           & > span {
+            font-weight: 700;
+            color: rgba(193, 194, 195, 1);
+           }
+        }
+    }
+}

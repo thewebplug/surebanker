@@ -25,6 +25,11 @@
   & > :last-child {
     display: flex;
     align-items: center;
+    gap:  10px;
+
+    & >:last-child {
+      display: flex;
+    align-items: center;
     gap: 6px;
 
     & > :last-child {
@@ -35,6 +40,7 @@
       justify-content: center;
       border-radius: 50%;
       border: 6px solid #f2faff;
+    }
     }
   }
 }
@@ -86,6 +92,7 @@
 
     &__card {
       @extend %title-10;
+      position: relative;
       display: flex;
       align-items: end;
       justify-content: center;
@@ -97,6 +104,11 @@
       margin-bottom: 24px;
       color: rgba(0, 0, 0, 1);
       cursor: pointer;
+
+      & > div {
+        z-index: 1;
+        white-space: nowrap;
+      }
     }
   }
 

@@ -8,17 +8,17 @@ export default function Kyc() {
   };
   
   return (
-    <form className="kyc" onSubmit={handleSubmit}>
+    <form className="auth" onSubmit={handleSubmit}>
       <Image src="/assets/shield.png" width={40} height={44.04} />
 
-      <div className="kyc__title">Login</div>
-      <div className="kyc__subtitle">
+      <div className="auth__title">Login</div>
+      <div className="auth__subtitle">
         Please enter your account PIN to proceed
       </div>
 
       <label htmlFor="">Phone number</label>
 
-      <div className="kyc__country-phone">
+      <div className="auth__country-phone">
         <select name="" id="">
           <option value=""></option>
         </select>
@@ -31,19 +31,19 @@ export default function Kyc() {
 
       <button>Login</button>
 
-      <div className="kyc__forgot-password-text">
+      <div className="auth__forgot-password-text">
         <div>
           Dont have an account?{" "}
           <span
             className="pointer"
-            onClick={() => (window.location.href = "/kyc/register")}
+            onClick={() => (window.location.href = "/auth/register")}
           >
             Register
           </span>
         </div>
         <div
           className="pointer"
-          onClick={() => (window.location.href = "/kyc/forgot-password")}
+          onClick={() => (window.location.href = "/auth/forgot-password")}
         >
           Forgot Password
         </div>

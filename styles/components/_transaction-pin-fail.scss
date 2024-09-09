@@ -1,0 +1,26 @@
+.transaction-pin-fail {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 352px;
+    height: 56px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 1);
+    background: #F2FAFF;
+
+    &__title {
+        @extend %title-10;
+        font-weight: 400;
+        z-index: 1;
+        padding-top: 13px;
+        padding-left: 40px;
+        color: rgba(102, 112, 133, 1);
+
+        & > span {
+            font-weight: 700;
+            color: rgba(255, 15, 15, 1);
+        }
+    }
+}

@@ -25,7 +25,9 @@ export default function Profile() {
             </div>
           </div>
         </div>
-        <div className="profile__inner__group">
+        <div className="profile__inner__group"
+        onClick={() => window.location.href = "/profile/kyc"}
+        >
           <div>
             <Image src="/assets/kyc.png" width={30} height={27.72} />
 

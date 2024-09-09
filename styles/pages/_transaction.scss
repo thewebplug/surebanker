@@ -13,21 +13,49 @@
     gap: 15px;
     margin-bottom: 42px;
   }
+
+  &__statement {
+    @extend %title-10;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-weight: 400;
+    color: rgba(82, 82, 82, 1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
   &__banner {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 194px;
     border-radius: 4px;
-    margin-bottom: 22px;
+    margin-bottom: 21px;
+    background: rgba(117, 52, 255, 1);
 
+padding: 13px 18px;
     &__title {
-      @extend %title-12;
-      font-weight: 800;
-      position: absolute;
-      bottom: 37px;
-      left: 50%;
-      transform: translateX(-50%);
+      @extend %title-8;
+      font-weight: 400;
       color: rgba(255, 255, 255, 1);
+      margin-bottom: 4px;
+      // position: absolute;
+      // bottom: 37px;
+      // left: 50%;
+      // transform: translateX(-50%);
+    }
+
+    &__subtitle {
+      @extend %title-16;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 1);
+
+      & > span {
+        @extend %title-10;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 1);
+      }
     }
 
     &__nav {
@@ -51,6 +79,84 @@
         background: rgba(68, 64, 255, 1) !important;
       }
     }
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &__tab {
+      display: flex;
+      align-items: center;
+
+      & > div {
+        @extend %title-10;
+        font-weight: 400;
+        padding: 6px 15px;
+        border-radius: 4px;
+        color: rgba(0, 0, 0, 1);
+        cursor: pointer;
+      }
+
+      &__active {
+        background: rgba(255, 190, 22, 1);
+        font-weight: 700 !important;
+      }
+    }
+
+    &__filter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      & > label {
+        @extend %title-10;
+        position: relative;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 1);
+        background: rgba(245, 245, 245, 1);
+        width: 82px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:  0 12px;
+        border-radius: 4px;
+
+        & > svg {
+          cursor: pointer;
+        }
+        
+      }
+
+      &__input-first {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: -1;
+      }
+      &__input-last {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+  }
+
+  &__date {
+    @extend %title-10;
+    font-weight: 700;
+    color: rgba(102, 112, 133, 1);
+    margin-bottom: 17px;
   }
   &__title {
     @extend %title-14;
@@ -305,6 +411,71 @@
     
           }
       }
+    }
+  }
+
+  &__statement-icon {
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  &__statement-date-title {
+    @extend %title-10;
+    font-weight: 400;
+    color: rgba(156, 156, 156, 1);
+    margin-bottom: 9px;
+  }
+
+  &__statement-date-range{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 36px;
+    
+    & > div {
+      @extend %title-10;
+      padding: 0 8px;
+      font-weight: 300;
+      color: rgba(0, 0, 0, 1);
+      width: 170px;
+      height: 36px;
+      background: rgba(245, 245, 245, 1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  &__statement-date-subtitle{
+    @extend %title-10;
+    font-weight: 400;
+    color: rgba(156, 156, 156, 1);
+    margin-bottom: 9px;
+  }
+
+  &__statement-tabs{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    & > div {
+      @extend %title-10;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 1);
+      width: 97px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    &__active {
+      background: rgba(255, 190, 22, 1);
+      font-weight: 700 !important;
     }
   }
 }
