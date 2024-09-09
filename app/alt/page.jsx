@@ -24,7 +24,7 @@ export default function Auth() {
 
             <label htmlFor="">Country of residence</label>
             <select name="" id="" required>
-                {countries.map((country) => <option value={country?.label}>{country?.label}</option>)}
+                {countries.map((country, index) => <option key={index} value={country?.label}>{country?.label}</option>)}
             </select>
             <label htmlFor="">Phone number</label>
 
