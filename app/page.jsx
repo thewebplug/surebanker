@@ -133,7 +133,9 @@ export default function Landing() {
             />
             <div>Pay Bills</div>
             </div>
-          <div className="dashboard-main__cards__card">
+          <div className="dashboard-main__cards__card"
+          onClick={() => window.location.href = "/airtime"}
+          >
           <Image
             src="/assets/airtime.png"
             objectFit="cover"
