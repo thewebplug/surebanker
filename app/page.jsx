@@ -124,7 +124,10 @@ export default function Landing() {
             layout="fill"
             />
             <div>Add Money</div></div>
-          <div className="dashboard-main__cards__card">
+          <div className="dashboard-main__cards__card"
+                   onClick={() => window.location.href = "/bills"}
+ 
+          >
             
           <Image
             src="/assets/pay bills.png"
