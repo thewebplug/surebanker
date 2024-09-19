@@ -1,0 +1,56 @@
+.legal {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  padding: 20px;
+  margin: auto;
+  &__title {
+    @extend %title-20;
+    font-weight: 700;
+    color: rgba(68, 64, 255, 1);
+    margin-top: 10px;
+    margin-bottom: 55px;
+  }
+  &__subsubtitle {
+    @extend %title-12;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 1);
+    margin-bottom: 21px;
+  }
+  &__subtitle {
+    @extend %title-14;
+    font-weight: 300;
+    color: rgba(102, 112, 133, 1);
+    margin-bottom: 37px;
+    line-height: 140%;
+  }
+
+  &__agree {
+    @extend %title-12;
+    font-weight: 400;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: rgba(0, 0, 0, 1);
+    margin-bottom: 18px;
+
+    & > input {
+      width: 22px;
+      height: 22px;
+    }
+
+    & > div {
+      font-size: 12px;
+      & > span {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__button {
+@extend %action-button;
+  }
+
+  
+
+}

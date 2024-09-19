@@ -6,6 +6,7 @@
     margin: auto;
     height: 100vh;
     overflow-y: auto;
+    padding-bottom: 60px;
 
     &__nav {
         @extend %title-14;
@@ -71,6 +72,7 @@ background: rgba(255, 255, 255, 1) !important;
       }
 
       &__input {
+        width: 100%;
         display: grid;
         grid-template-columns: 2fr 1fr;
         align-items: center;
@@ -96,6 +98,86 @@ background: rgba(255, 255, 255, 1) !important;
             height: 100%;
             border: none;
             color: rgba(0, 0, 0, 1);
+        }
+      }
+      &__bills-select {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        border: 0.5px solid rgba(68, 64, 255, 1);
+        padding:  0 19px;
+        height: 51px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+
+        & > input{
+            @extend %title-12;
+            font-weight: 700;
+            width: 100%;
+            height: 100%;
+            border: none;
+            color: rgba(102, 112, 133, 1);
+        }
+
+        & > div {
+          @extend %title-12;
+          font-weight: 700;
+          color: rgba(0, 0, 0, 1);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      &__cable-select {
+        display: grid;
+        grid-template-columns: 40px auto;
+        align-items: center;
+        border: 0.5px solid rgba(68, 64, 255, 1);
+        padding:  0 19px;
+        height: 51px;
+        border-radius: 6px;
+        margin-bottom: 37px;
+
+        & > input{
+            @extend %title-12;
+            font-weight: 700;
+            width: 100%;
+            height: 100%;
+            border: none;
+            color: rgba(102, 112, 133, 1);
+        }
+
+        & > select {
+            @extend %title-12;
+            font-weight: 700;
+            width: 100%;
+            height: 100%;
+            border: none;
+            color: rgba(0, 0, 0, 1);
+        }
+      }
+
+      &__user {
+        width: 100%;
+        height: 65px;
+        background: rgba(250, 250, 250, 1);
+        border-radius: 4px;
+        @extend %title-10;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 16px;
+        margin-bottom: 23px;
+
+        &__title {
+          font-weight: 700;
+          color: rgba(0, 0, 0, 1);
+          margin-bottom: 4px;
+        }
+        &__subtitle {
+          font-weight: 300;
+          color: rgba(0, 0, 0, 1);
         }
       }
 
@@ -148,7 +230,7 @@ border: 0.5px solid rgba(68, 64, 255, 1);
 }
       }
     
-      & > button {
+      &__button {
         @extend %action-button;
         margin-top: 100px;
       }
@@ -158,10 +240,12 @@ border: 0.5px solid rgba(68, 64, 255, 1);
       }
 
       &__otp-modal {
-        position: absolute;
-        bottom: 0;
-        left: 0;
+        position: fixed;
         width: 100%;
+        max-width: 430px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
         border-radius: 24px 24px 0px 0px;
         height: 404px;
         box-shadow: 0px -4px 4px 0px rgba(236, 236, 236, 1);
@@ -234,10 +318,132 @@ border: 0.5px solid rgba(68, 64, 255, 1);
           // }
         }
     
-        & > button {
+        &__button {
           @extend %action-button;
         }
 
+        &__successful-purchase-token {
+          @extend %title-10;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 17px;
+          border: 0.4px solid rgba(64, 140, 255, 1);
+          width: 100%;
+          height: 45px;
+          border-radius: 4px;
+          margin-bottom: 17px;
 
+          & >:first-child {
+            font-weight: 700;
+            color: rgba(68, 64, 255, 1);
+          }
+          & >:nth-child(2) {
+            font-weight: 300;
+            color: rgba(0, 0, 0, 1);
+          }
+        }
+
+        &__successful-purchase-details {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 44px;
+
+          & > div {
+            & >:first-child {
+              @extend%title-10;
+              font-weight: 400;
+              color: rgba(124, 125, 128, 1);
+              margin-bottom: 5px;
+            }
+            & >:last-child {
+              @extend%title-12;
+              font-weight: 700;
+              color: rgba(102, 112, 133, 1);
+            }
+          }
+        }
+
+        &__successful-purchase-download{
+          @extend %title-10;
+        font-weight: 400;
+        width: fit-content;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin: auto;
+          color: rgba(124, 125, 128, 1);
+        }
+      }
+
+      &__automate-title {
+        @extend %title-10;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 8px;
+        margin-top: 23px;
+      }
+
+        
+        &__automate-switch {
+          width: 30px;
+          height: 14.84px;
+          border-radius: 50px;
+          background: rgba(208, 213, 221, 1);
+          cursor: pointer;
+          padding: 0 1px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 21px;
+
+          &__ball {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #FFF;
+              transition: 0.4s;                    }
+      }
+
+      &__automate-switch-active {
+          background: rgba(15, 255, 154, 1);
+
+          .surebanker-data__automate-switch__ball {
+              transition: 0.4s;
+              transform: translate(160%, 0);
+          }
+      }
+
+      &__automate-frequency {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 35px;
+        margin-bottom: 18px;
+
+        & > select, & > input {
+          @extend %primary-input;
+        }
+      }
+
+      &__automate-details {
+      @extend %title-14;
+      font-weight: 400;
+      color: rgba(102, 112, 133, 1);
+
+      & > span {
+        font-weight: 700;
+      }
+      }
+
+      &__automate-trans-button {
+        @extend %trans-button;
+        margin-bottom: 13px;
+        margin-top: 60px;
+      }
+      &__automate-button {
+        @extend %error-button;
       }
 }

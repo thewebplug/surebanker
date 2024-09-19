@@ -28,7 +28,7 @@ export default function Data() {
           />
         </svg>
 
-        <div>Data</div>
+        <div>Airtime</div>
       </div>
 
       <div className="surebanker-data__slide">
