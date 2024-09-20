@@ -144,6 +144,7 @@ export default function Data() {
       </div> */}
 
       <button
+      className="surebanker-data__button"
       onClick={() => setOpen(true)}
       >Submit</button>
 
@@ -198,7 +199,7 @@ export default function Data() {
           Enter Transaction PIN to continue
           </div>
 
-          <button onClick={() => setStage(2)}>Continue Transaction</button>
+          <button className="surebanker-data__button" onClick={() => setStage(2)}>Continue Transaction</button>
         </div>
       ) : ""}
       {open && stage === 2 ?  (

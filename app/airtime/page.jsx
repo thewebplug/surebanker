@@ -98,7 +98,7 @@ export default function Data() {
 
    <input type="text" />
 
-      <button onClick={() => setOpen(true)}>Submit</button>
+      <button className="surebanker-data__button" onClick={() => setOpen(true)}>Submit</button>
 
       {open && (
         <div className="surebanker-data__otp-modal">
