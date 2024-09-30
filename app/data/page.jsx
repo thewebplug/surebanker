@@ -3,12 +3,15 @@
 import Image from "next/image";
 import Navigation from "../components/navigation";
 import ProfileHeader from "../components/profile-header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Data() {
   const [open, setOpen] = useState(false);
   const [automatedOpen, setAutomatedOpen] = useState(false);
   const [automateTopup, setAutomateTopup] = useState(true);
+  const [phone, setPhone] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState(0);
 
   const handleAutomateTopup = () => {
     if(automateTopup) {
@@ -18,6 +21,39 @@ export default function Data() {
       setAutomateTopup(true);
     }
   }
+
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  }
+
+  const handleOtpSubmit = (e) => {
+    e.preventDefault();
+    setPhone("")
+    setOpen(false);
+  }
+
+  useEffect(() => {
+    const otpInputs = document.querySelectorAll(".surebanker-data__otp-modal__otp-group__otp-input");
+
+    otpInputs.forEach((input, index) => {
+      input.addEventListener("input", (event) => {
+        const inputValue = event.target.value;
+
+        if (inputValue && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Backspace" && index > 0 && !input.value) {
+          otpInputs[index - 1].focus();
+          event.preventDefault();
+        }
+      });
+    });
+  },[open]);
 
   return (
     <div className="surebanker-data">
@@ -95,9 +131,11 @@ export default function Data() {
         </div>
       </div>
 
-      <label className="surebanker-data__label">Phone number</label>
+     <form onSubmit={handleSubmit}>
+
+     <label className="surebanker-data__label">Phone number</label>
       <div className="surebanker-data__input">
-        <input type="text" />
+      <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} required />
         <select name="" id="">
           <option value="">MTN</option>
         </select>
@@ -107,17 +145,26 @@ export default function Data() {
         Select Category
       </label>
       <div className="surebanker-data__category__cards">
-        <div className="surebanker-data__category__cards__active">
+        <div 
+        className={category === 0 && "surebanker-data__category__cards__active"}
+        onClick={() => setCategory(0)}
+        >
           <div>100</div>
           <div>-</div>
           <div>999</div>
         </div>
-        <div>
+        <div
+        className={category === 1 && "surebanker-data__category__cards__active"}
+        onClick={() => setCategory(1)}
+        >
           <div>1000</div>
           <div>-</div>
           <div>9999</div>
         </div>
-        <div>
+        <div
+        className={category === 2 && "surebanker-data__category__cards__active"}
+        onClick={() => setCategory(2)}
+        >
           <div>10000</div>
           <div>-</div>
           <div>100000</div>
@@ -182,12 +229,13 @@ export default function Data() {
             </div>
 
       <button
-      onClick={() => setOpen(true)}
+      type="submit"
       className="surebanker-data__button"
       >Submit</button>
+     </form>
 
       {open && (
-        <div className="surebanker-data__otp-modal">
+        <form className="surebanker-data__otp-modal" onSubmit={handleOtpSubmit}>
         <div className="surebanker-data__otp-modal__title">
         <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 <circle cx="22.5" cy="22.5" r="22.5" fill="#FFF1D1"/>
@@ -202,7 +250,7 @@ export default function Data() {
 
 <div>
 <div>Data Purchase</div>
-<div>100MB to 08099934578</div>
+<div>100MB to {phone}</div>
 </div>
 
             </div>
@@ -214,21 +262,25 @@ export default function Data() {
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
             <input
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
             <input
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
             <input
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
           
           </div>
@@ -239,9 +291,9 @@ export default function Data() {
 
           <button
            className="surebanker-data__button"
-           onClick={() => setOpen(false)}
+           type="submit"
           >Continue Transaction</button>
-        </div>
+        </form>
       )}
       {automatedOpen && (
         <div className="surebanker-data__otp-modal">

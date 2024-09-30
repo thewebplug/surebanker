@@ -35,24 +35,26 @@
     align-items: center;
     border: 0.5px solid rgba(211, 211, 211, 1);
     margin-bottom: 11px;
+    padding-left: 12px;
 
-    & > input,
-    & > select {
+    & > input {
       width: 100%;
       border: none;
       outline: none;
       height: 100%;
       background: transparent;
+      // padding-left: 12px;
     }
 
     & > select {
       width: 60px;
       margin-right: 22px;
-    }
-
-    & > :nth-child(even) {
-      width: 34px;
-      margin-right: 11px;
+      // width: 100%;
+      border: none;
+      outline: none;
+      height: 100%;
+      background: transparent;
+      margin-left: 4px;
     }
   }
 

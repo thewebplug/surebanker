@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 export default function ProfileHeader() {
+  const auth = useSelector((state) => state.auth);
   return (
       <div className="profile-header">
       <div className="profile-header__inner">
@@ -13,7 +15,7 @@ export default function ProfileHeader() {
         <div>
           <div className="profile-header__inner__title">Profile</div>
           <div className="profile-header__inner__subtitle">
-            Emmanuel <span>Oghene</span>
+            {auth?.firstName} <span>{auth?.lastName}</span>
           </div>
         </div>
         </div>

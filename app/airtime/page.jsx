@@ -3,10 +3,44 @@
 import Image from "next/image";
 import Navigation from "../components/navigation";
 import ProfileHeader from "../components/profile-header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Data() {
   const [open, setOpen] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [amount, setAmount] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOpen(true);
+  }
+  const handleOtpSubmit = (e) => {
+    e.preventDefault();
+    setOpen(false);
+    setPhone("")
+    setAmount("")
+  }
+
+  useEffect(() => {
+    const otpInputs = document.querySelectorAll(".surebanker-data__otp-modal__otp-group__otp-input");
+
+    otpInputs.forEach((input, index) => {
+      input.addEventListener("input", (event) => {
+        const inputValue = event.target.value;
+
+        if (inputValue && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Backspace" && index > 0 && !input.value) {
+          otpInputs[index - 1].focus();
+          event.preventDefault();
+        }
+      });
+    });
+  },[open]);
 
   return (
     <div className="surebanker-data">
@@ -84,9 +118,10 @@ export default function Data() {
         </div>
       </div>
 
+<form onSubmit={handleSubmit}>
       <label className="surebanker-data__label">Phone number</label>
       <div className="surebanker-data__input">
-        <input type="text" />
+        <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} required />
         <select name="" id="">
           <option value="">MTN</option>
         </select>
@@ -96,12 +131,12 @@ export default function Data() {
       Enter Amount
       </label>
 
-   <input type="text" />
+   <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} required />
 
-      <button className="surebanker-data__button" onClick={() => setOpen(true)}>Submit</button>
-
+      <button className="surebanker-data__button" type="submit">Submit</button>
+      </form>
       {open && (
-        <div className="surebanker-data__otp-modal">
+        <form className="surebanker-data__otp-modal" onSubmit={handleOtpSubmit}>
         <div className="surebanker-data__otp-modal__title">
         <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 <circle cx="22.5" cy="22.5" r="22.5" fill="#FFF1D1"/>
@@ -116,7 +151,7 @@ export default function Data() {
 
 <div>
 <div>Airtime Purchase</div>
-<div><span>NGN</span> 100 to 08099934578</div>
+<div><span>NGN</span> {amount} to {phone}</div>
 </div>
 
             </div>
@@ -128,21 +163,25 @@ export default function Data() {
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
             <input
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
             <input
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
             <input
               className="surebanker-data__otp-modal__otp-group__otp-input"
               type="text"
               maxLength={1}
+              required
             />
           
           </div>
@@ -151,8 +190,10 @@ export default function Data() {
           Enter Transaction PIN to continue
           </div>
 
-          <button>Continue Transaction</button>
-        </div>
+          <button className="surebanker-data__otp-modal__button"
+          type="submit"
+          >Continue Transaction</button>
+        </form>
       )}
 
       <Navigation />

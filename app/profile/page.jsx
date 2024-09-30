@@ -3,8 +3,33 @@
 import Image from "next/image";
 import Navigation from "../components/navigation";
 import ProfileHeader from "../components/profile-header";
+import { getProfile } from "../apis/profile";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+  const auth = useSelector((state) => state.auth);
+  const handleGetProfile = async () => {
+    const response = await getProfile(auth?.token);
+    console.log('getProfile', response);
+    
+  }
+
+  useEffect (() => {
+    handleGetProfile();
+  }, [])
+
+  // const handleLogout = () => {
+  //   document.cookie =
+  //     "auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+  //   dispatch({
+  //     type: "LOGOUT_SUCCESS",
+  //   });
+  //   localStorage.removeItem("token");
+  //   window.location.href = "/alt/login";
+  //   window.scrollTo(0, 0);
+  // };
+
   return (
     <div className="profile">
       <ProfileHeader />

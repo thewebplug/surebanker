@@ -3,8 +3,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import TransactionPinFail from "../components/transaction-pin-fail";
 import TransactionPinSuccess from "../components/transaction-pin-success";
+import { useSelector } from "react-redux";
 
 export default function Kyc() {
+  const auth = useSelector((state) => state.auth);
+  
 const [open, setOpen] = useState(false);
   useEffect(() => {
     const otpInputs = document.querySelectorAll(".auth__otp-group__otp-input1");
@@ -60,7 +63,7 @@ const [open, setOpen] = useState(false);
     <form className="auth" onSubmit={handleSubmit}>
       <Image src="/assets/shield.png" width={40} height={44.04} />
 
-      <div className="auth__title">Clara Rayo</div>
+      <div className="auth__title">{auth?.userInfo?.firstName} {auth?.userInfo?.lastName}</div>
       <div className="auth__subtitle">
         Welcome, please set up your welcome back pin
       </div>

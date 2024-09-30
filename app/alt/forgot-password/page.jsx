@@ -1,11 +1,25 @@
 "use client"
 import Image from "next/image";
 import { useState } from "react";
+import { countries } from "@/app/utils/countries";
+import { sendOtp } from "@/app/apis/auth";
 
 export default function Kyc() {
-    const [stage, setStage] = useState(2)
+    const [stage, setStage] = useState(1)
+    const [countryCode, setCountryCode] = useState("NG");
+    const [phone, setPhone] = useState("");
+    const [loading, setLoading] = useState("");
+
+    const handleSendOtp = async (e) => {
+      e.preventDefault()
+      setLoading(true);
+      const response = await sendOtp(phone);
+      console.log('response', response);
+      setLoading(false);
+    }
+
   return (
-    <div className="auth">
+    <form className="auth" onSubmit={handleSendOtp}>
       <Image src="/assets/shield.png" width={40} height={44.04} />
 
       <div className="auth__title">Forgot Password</div>
@@ -16,11 +30,31 @@ export default function Kyc() {
       <label htmlFor="">Phone number</label>
 
       <div className="auth__country-phone">
-        <select name="" id="">
+        <Image
+          src={`https://flagcdn.com/w20/${countryCode.toLowerCase()}.png`}
+          width={22}
+          height={12.43}
+          style={{ minWidth: "22px" }}
+        />
+        <select
+          name=""
+          id=""
+          value={countryCode}
+          onChange={(e) => setCountryCode(e.target.value)}
+          required
+        >
           <option value=""></option>
+          {countries?.map((item) => (
+            <option value={item?.code}>{item?.phone}</option>
+          ))}
         </select>
-        <input type="text" value="234" />
-        <input type="text" value="08022224444" />
+        <input
+          type="text"
+          placeholder="08022224444"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          required
+        />
       </div>
       </>}
 {stage === 2 && <>
@@ -29,7 +63,7 @@ export default function Kyc() {
       <label htmlFor="">Confirm Password</label>
       <input type="password" />
       </>}
-      <button>Continue</button>
+      <button type="submit">{loading ? "Loading..." : "Continue"}</button>
 
       <div className="auth__forgot-password-text"
                   onClick={() => window.location.href = "/auth/login"}
@@ -39,6 +73,6 @@ export default function Kyc() {
           <span>Login</span>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

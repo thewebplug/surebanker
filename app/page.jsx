@@ -1,12 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "./components/navigation";
 import TransactionPinSuccess from "./components/transaction-pin-success";
 import TransactionPinFail from "./components/transaction-pin-fail";
+import { useSelector } from "react-redux";
 
 export default function Landing() {
+  const auth = useSelector((state) => state.auth);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <>
       <header className="dashboard-header">
@@ -19,51 +26,56 @@ export default function Landing() {
           />
 
           <div>
-            Welcome, <span>Oghene</span>
+            Welcome, <span>{isClient && auth?.userInfo?.firstName}</span>
           </div>
         </div>
 
         <div>
-
-        <svg className="pointer" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"
-        onClick={() => window.location.href = "/notifications"}
-        >
-<path d="M7.54445 15.8368L12.4749 15.8338C12.2767 17.0157 11.2492 17.9167 10.0109 17.9174C8.77257 17.9181 7.74401 17.0184 7.54445 15.8368ZM10.0013 1.6694C13.4531 1.66736 16.253 4.46392 16.255 7.9157L16.257 11.2478L17.4404 13.8805C17.4862 13.9824 17.51 14.0929 17.51 14.2046C17.5103 14.6419 17.1561 14.9965 16.7188 14.9968L3.30267 15.0047C3.19118 15.0047 3.08094 14.9813 2.97916 14.9358C2.57999 14.7574 2.40103 14.2891 2.57945 13.8899L3.75697 11.2555L3.75508 7.91232L3.75864 7.70405C3.87255 4.34505 6.6312 1.67139 10.0013 1.6694Z" fill="#667085"/>
-</svg>
-        <div>
-          <div>NGN</div>
-          <div className="header__icon">
-            <svg
-              width="14"
-              height="8"
-              viewBox="0 0 14 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_5131_6299)">
-                <path
-                  d="M0.666992 0H13.667V7.34783H0.666992V0Z"
-                  fill="#008751"
-                />
-                <path d="M5 0H9.33333V7.34783H5V0Z" fill="white" />
-              </g>
-              <defs>
-                <clipPath id="clip0_5131_6299">
-                  <rect
-                    width="13"
-                    height="7.34783"
-                    fill="white"
-                    transform="translate(0.666992)"
+          <svg
+            className="pointer"
+            width="21"
+            height="20"
+            viewBox="0 0 21 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onClick={() => (window.location.href = "/notifications")}
+          >
+            <path
+              d="M7.54445 15.8368L12.4749 15.8338C12.2767 17.0157 11.2492 17.9167 10.0109 17.9174C8.77257 17.9181 7.74401 17.0184 7.54445 15.8368ZM10.0013 1.6694C13.4531 1.66736 16.253 4.46392 16.255 7.9157L16.257 11.2478L17.4404 13.8805C17.4862 13.9824 17.51 14.0929 17.51 14.2046C17.5103 14.6419 17.1561 14.9965 16.7188 14.9968L3.30267 15.0047C3.19118 15.0047 3.08094 14.9813 2.97916 14.9358C2.57999 14.7574 2.40103 14.2891 2.57945 13.8899L3.75697 11.2555L3.75508 7.91232L3.75864 7.70405C3.87255 4.34505 6.6312 1.67139 10.0013 1.6694Z"
+              fill="#667085"
+            />
+          </svg>
+          <div>
+            <div>NGN</div>
+            <div className="header__icon">
+              <svg
+                width="14"
+                height="8"
+                viewBox="0 0 14 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_5131_6299)">
+                  <path
+                    d="M0.666992 0H13.667V7.34783H0.666992V0Z"
+                    fill="#008751"
                   />
-                </clipPath>
-              </defs>
-            </svg>
+                  <path d="M5 0H9.33333V7.34783H5V0Z" fill="white" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_5131_6299">
+                    <rect
+                      width="13"
+                      height="7.34783"
+                      fill="white"
+                      transform="translate(0.666992)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
           </div>
         </div>
-
-       
-        </div>
-
       </header>
       <main className="dashboard-main">
         <h1 className="dashboard-main__title">Total Balance</h1>
@@ -108,44 +120,46 @@ export default function Landing() {
         </h2>
 
         <div className="dashboard-main__cards">
-          <div className="dashboard-main__cards__card"
-          onClick={() => window.location.href = "/transactions"}
+          <div
+            className="dashboard-main__cards__card"
+            onClick={() => (window.location.href = "/transactions")}
+          >
+            <Image src="/assets/transfer.png" objectFit="cover" layout="fill" />
+            <div>Transfer</div>
+          </div>
+          <div className="dashboard-main__cards__card">
+            <Image
+              src="/assets/add money.png"
+              objectFit="cover"
+              layout="fill"
+            />
+            <div>Add Money</div>
+          </div>
+          <div
+            className="dashboard-main__cards__card"
+            onClick={() => (window.location.href = "/bills")}
           >
             <Image
-            src="/assets/transfer.png"
-            objectFit="cover"
-            layout="fill"
-            />
-            <div>Transfer</div></div>
-          <div className="dashboard-main__cards__card">
-          <Image
-            src="/assets/add money.png"
-            objectFit="cover"
-            layout="fill"
-            />
-            <div>Add Money</div></div>
-          <div className="dashboard-main__cards__card"
-                   onClick={() => window.location.href = "/bills"}
- 
-          >
-            
-          <Image
-            src="/assets/pay bills.png"
-            objectFit="cover"
-            layout="fill"
+              src="/assets/pay bills.png"
+              objectFit="cover"
+              layout="fill"
             />
             <div>Pay Bills</div>
-            </div>
-          <div className="dashboard-main__cards__card"
-          onClick={() => window.location.href = "/airtime"}
+          </div>
+          <div
+            className="dashboard-main__cards__card"
+            onClick={() => (window.location.href = "/airtime")}
           >
-          <Image
-            src="/assets/airtime.png"
-            objectFit="cover"
-            layout="fill"
-            />
+            <Image src="/assets/airtime.png" objectFit="cover" layout="fill" />
             <div>Airtime</div>
-            </div>
+          </div>
+          <div
+            className="dashboard-main__cards__card"
+            onClick={() => (window.location.href = "/data")}
+          >
+            <Image src="/assets/airtime.png" objectFit="cover" layout="fill" />
+            <div>Data</div>
+          </div>
         </div>
 
         <div className="dashboard-main__credit-cards">
@@ -400,27 +414,47 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="dashboard-main__history"
-        onClick={() => window.location.href = "/transactions/history"}
+        <div
+          className="dashboard-main__history"
+          onClick={() => (window.location.href = "/transactions/history")}
         >
           <div>View Transactions</div>
           <div>History</div>
-          <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-<ellipse cx="12.1268" cy="12.0023" rx="12.1268" ry="12.0023" transform="matrix(0.707107 0.707107 -0.709082 0.705126 17.0215 0)" fill="#FEDF00"/>
-<g clip-path="url(#clip0_5199_3325)">
-<path d="M18.6789 14.9191C18.5309 14.7711 18.2919 14.7696 18.145 14.9156C17.9981 15.0617 17.999 15.3001 18.147 15.4481L19.9117 17.2128L12.2805 17.1629C12.072 17.1615 11.9036 17.3289 11.9044 17.5369C11.9052 17.7448 12.0748 17.9145 12.2833 17.9158L19.9146 17.9658L18.1631 19.7076C18.0162 19.8536 18.0171 20.092 18.1651 20.24C18.3131 20.388 18.5521 20.3896 18.699 20.2435L21.0926 17.8633C21.2395 17.7172 21.2386 17.4788 21.0906 17.3308L18.6789 14.9191Z" fill="black"/>
-</g>
-<defs>
-<clipPath id="clip0_5199_3325">
-<rect width="9.0951" height="9.00169" fill="white" transform="matrix(0.707107 0.707107 -0.709082 0.705126 16.5293 11.1777)"/>
-</clipPath>
-</defs>
-</svg>
-
+          <svg
+            width="35"
+            height="35"
+            viewBox="0 0 35 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <ellipse
+              cx="12.1268"
+              cy="12.0023"
+              rx="12.1268"
+              ry="12.0023"
+              transform="matrix(0.707107 0.707107 -0.709082 0.705126 17.0215 0)"
+              fill="#FEDF00"
+            />
+            <g clip-path="url(#clip0_5199_3325)">
+              <path
+                d="M18.6789 14.9191C18.5309 14.7711 18.2919 14.7696 18.145 14.9156C17.9981 15.0617 17.999 15.3001 18.147 15.4481L19.9117 17.2128L12.2805 17.1629C12.072 17.1615 11.9036 17.3289 11.9044 17.5369C11.9052 17.7448 12.0748 17.9145 12.2833 17.9158L19.9146 17.9658L18.1631 19.7076C18.0162 19.8536 18.0171 20.092 18.1651 20.24C18.3131 20.388 18.5521 20.3896 18.699 20.2435L21.0926 17.8633C21.2395 17.7172 21.2386 17.4788 21.0906 17.3308L18.6789 14.9191Z"
+                fill="black"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_5199_3325">
+                <rect
+                  width="9.0951"
+                  height="9.00169"
+                  fill="white"
+                  transform="matrix(0.707107 0.707107 -0.709082 0.705126 16.5293 11.1777)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
         </div>
 
         <Navigation />
-
       </main>
     </>
   );
