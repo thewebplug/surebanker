@@ -90,8 +90,8 @@ export default function Auth() {
         />
         <select name="" id="" value={countryCode} onChange={(e) => setCountryCode(e.target.value)}>
           <option value=""></option>
-          {countries?.map((item) => 
-        <option value={item?.code}>{item?.phone}</option>  
+          {countries?.map((item, index) => 
+        <option value={item?.code} key={index}>{item?.phone}</option>  
         )}
         </select>
         <input type="text" placeholder="08022224444" value={phone} onChange={(e) => setPhone(e.target.value)} required />

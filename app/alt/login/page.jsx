@@ -61,8 +61,8 @@ export default function Login() {
           onChange={(e) => setCountryCode(e.target.value)}
         >
           <option value=""></option>
-          {countries?.map((item) => (
-            <option value={item?.code}>{item?.phone}</option>
+          {countries?.map((item, index) => (
+            <option value={item?.code} key={index}>{item?.phone}</option>
           ))}
         </select>
         <input
