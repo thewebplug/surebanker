@@ -44,8 +44,8 @@ export default function Kyc() {
           required
         >
           <option value=""></option>
-          {countries?.map((item) => (
-            <option value={item?.code}>{item?.phone}</option>
+          {countries?.map((item, index) => (
+            <option value={item?.code} key={index}>{item?.phone}</option>
           ))}
         </select>
         <input
