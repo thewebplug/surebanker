@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import Navigation from "./components/navigation";
+import TransactionPinSuccess from "./components/transaction-pin-success";
+import TransactionPinFail from "./components/transaction-pin-fail";
 
 export default function Landing() {
   return (
@@ -21,6 +23,13 @@ export default function Landing() {
           </div>
         </div>
 
+        <div>
+
+        <svg className="pointer" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+        onClick={() => window.location.href = "/notifications"}
+        >
+<path d="M7.54445 15.8368L12.4749 15.8338C12.2767 17.0157 11.2492 17.9167 10.0109 17.9174C8.77257 17.9181 7.74401 17.0184 7.54445 15.8368ZM10.0013 1.6694C13.4531 1.66736 16.253 4.46392 16.255 7.9157L16.257 11.2478L17.4404 13.8805C17.4862 13.9824 17.51 14.0929 17.51 14.2046C17.5103 14.6419 17.1561 14.9965 16.7188 14.9968L3.30267 15.0047C3.19118 15.0047 3.08094 14.9813 2.97916 14.9358C2.57999 14.7574 2.40103 14.2891 2.57945 13.8899L3.75697 11.2555L3.75508 7.91232L3.75864 7.70405C3.87255 4.34505 6.6312 1.67139 10.0013 1.6694Z" fill="#667085"/>
+</svg>
         <div>
           <div>NGN</div>
           <div className="header__icon">
@@ -51,6 +60,10 @@ export default function Landing() {
             </svg>
           </div>
         </div>
+
+       
+        </div>
+
       </header>
       <main className="dashboard-main">
         <h1 className="dashboard-main__title">Total Balance</h1>
@@ -97,10 +110,37 @@ export default function Landing() {
         <div className="dashboard-main__cards">
           <div className="dashboard-main__cards__card"
           onClick={() => window.location.href = "/transactions"}
-          >Transfer</div>
-          <div className="dashboard-main__cards__card">Add Money</div>
-          <div className="dashboard-main__cards__card">Pay Bills</div>
-          <div className="dashboard-main__cards__card">Airtime</div>
+          >
+            <Image
+            src="/assets/transfer.png"
+            objectFit="cover"
+            layout="fill"
+            />
+            <div>Transfer</div></div>
+          <div className="dashboard-main__cards__card">
+          <Image
+            src="/assets/add money.png"
+            objectFit="cover"
+            layout="fill"
+            />
+            <div>Add Money</div></div>
+          <div className="dashboard-main__cards__card">
+            
+          <Image
+            src="/assets/pay bills.png"
+            objectFit="cover"
+            layout="fill"
+            />
+            <div>Pay Bills</div>
+            </div>
+          <div className="dashboard-main__cards__card">
+          <Image
+            src="/assets/airtime.png"
+            objectFit="cover"
+            layout="fill"
+            />
+            <div>Airtime</div>
+            </div>
         </div>
 
         <div className="dashboard-main__credit-cards">
@@ -375,6 +415,7 @@ export default function Landing() {
         </div>
 
         <Navigation />
+
       </main>
     </>
   );

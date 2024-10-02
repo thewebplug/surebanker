@@ -1,11 +1,13 @@
 "use client"
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import TransactionPinFail from "../components/transaction-pin-fail";
+import TransactionPinSuccess from "../components/transaction-pin-success";
 
 export default function Kyc() {
-
+const [open, setOpen] = useState(false);
   useEffect(() => {
-    const otpInputs = document.querySelectorAll(".kyc__otp-group__otp-input1");
+    const otpInputs = document.querySelectorAll(".auth__otp-group__otp-input1");
 
     otpInputs.forEach((input, index) => {
       input.addEventListener("input", (event) => {
@@ -26,7 +28,7 @@ export default function Kyc() {
   },[]);
 
   useEffect(() => {
-    const otpInputs = document.querySelectorAll(".kyc__otp-group__otp-input2");
+    const otpInputs = document.querySelectorAll(".auth__otp-group__otp-input2");
 
     otpInputs.forEach((input, index) => {
       input.addEventListener("input", (event) => {
@@ -48,39 +50,44 @@ export default function Kyc() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.href = "/kyc/list";
+    setOpen(true)
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 5000);
   };
 
   return (
-    <form className="kyc" onSubmit={handleSubmit}>
+    <form className="auth" onSubmit={handleSubmit}>
       <Image src="/assets/shield.png" width={40} height={44.04} />
 
-      <div className="kyc__title">Clara Rayo</div>
-      <div className="kyc__subtitle">
+      <div className="auth__title">Clara Rayo</div>
+      <div className="auth__subtitle">
         Welcome, please set up your welcome back pin
       </div>
 
       <label htmlFor="">New Pin</label>
-      <div className="kyc__otp-group">
-        <input className="kyc__otp-group__otp-input1" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input1" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input1" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input1" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input1" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input1" type="text" maxLength={1} required />
+      <div className="auth__otp-group">
+        <input className="auth__otp-group__otp-input1" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input1" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input1" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input1" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input1" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input1" type="text" maxLength={1} required />
       </div>
 
       <label htmlFor="">Confirm Pin</label>
-      <div className="kyc__otp-group">
-        <input className="kyc__otp-group__otp-input2" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input2" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input2" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input2" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input2" type="text" maxLength={1} required />
-        <input className="kyc__otp-group__otp-input2" type="text" maxLength={1} required />
+      <div className="auth__otp-group">
+        <input className="auth__otp-group__otp-input2" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input2" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input2" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input2" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input2" type="text" maxLength={1} required />
+        <input className="auth__otp-group__otp-input2" type="text" maxLength={1} required />
       </div>
       <button type="submit">Create Pin</button>
 
+        <TransactionPinSuccess open={open} />
+        {/* <TransactionPinFail /> */}
     </form>
   );
 }

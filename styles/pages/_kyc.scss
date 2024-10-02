@@ -3,120 +3,213 @@
   max-width: 430px;
   padding: 20px;
   margin: auto;
-  &__title {
-    @extend %title-20;
-    font-weight: 700;
-    color: rgba(68, 64, 255, 1);
-    margin-top: 10px;
-    margin-bottom: 55px;
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 100px;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-  &__subtitle {
-    @extend %title-12;
-    font-weight: 300;
-    color: rgba(0, 0, 0, 1);
-    margin-top: -47px;
-    margin-bottom: 37px;
-  }
+  &__inner {
+    padding: 20px;
+    background: #FFF;
 
-  & > input,
-  & > select {
-    @extend %primary-input;
-    width: 100%;
-    margin-bottom: 17px;
-  }
-
-  &__country-phone {
-    width: 100%;
-    width: 100%;
-    height: 50px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    border: 0.5px solid rgba(211, 211, 211, 1);
-    margin-bottom: 11px;
-
-    & > input,
-    & > select {
-      width: 100%;
-      border: none;
-      outline: none;
-      height: 100%;
-      background: transparent;
-    }
-
-    & > select {
-      width: 60px;
-      margin-right: 22px;
-    }
-
-    & > :nth-child(even) {
-      width: 34px;
-      margin-right: 11px;
-    }
-  }
-
-  & > button {
-    @extend %action-button;
-    width: 100%;
-    margin-top: 14px;
-    margin-bottom: 31px;
-  }
-
-  &__login-text {
-    @extend %title-14;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: rgba(23, 23, 23, 1);
-
-    & > :last-child {
-      font-weight: 600;
-    }
-  }
-
-  &__forgot-password-text {
-    @extend %title-12;
-    width: 100%;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: -22px;
-
-    & > div {
-      & > span {
-        font-weight: 600;
+    &__nav {
+        margin-bottom: 15px;
+        cursor: pointer;
       }
+    
+      &__title {
+        @extend %title-12;
+        font-weight: 700;
+        color: rgba(102, 112, 133, 1);
+        margin-bottom: 6px;
+      }
+      &__subtitle {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(102, 112, 133, 1);
+        margin-bottom: 39px;
+      }
+    
+      &__banner {
+        position: relative;
+        width: 100%;
+        height: 56px;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 51px;
+        padding-right: 14px;
+        margin-bottom: 43px;
+
+        
+    
+        &__title {
+            @extend %title-10;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+            margin-bottom: 6px;
+            z-index: 1;
+        }
+    
+        &__subtitle {
+            @extend %title-10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 1);
+            z-index: 1;
+            & > div {
+                & > span {
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 1);
+                }
+            }
+    
+            & > button {
+                width: 102px;
+                height: 20px;
+                font-size: 8px;
+                font-weight: 600;
+                color: rgba(52, 64, 84, 1);
+                background: rgba(255, 255, 255, 1);
+                border-radius: 30px;
+                border: none;
+                }
+        }
+      }
+
+      &__banner-3 {
+        .kyc__inner__banner__title {
+            color: rgba(0, 0, 0, 1) !important;
+        }
+        .kyc__inner__banner__subtitle {
+            color: rgba(0, 0, 0, 1) !important;
+
+            & > div {
+                & > span {
+                    color: rgba(102, 112, 133, 1);
+                }
+            }
+        }
     }
-  }
 
-  &__otp-group {
-    width: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 19px;
+      &__tier-banner {
+        position: relative;
+        width: 100%;
+        height: 118px;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding-left: 22px;
+        padding-bottom: 15px;
+        margin-bottom: 23px;
 
-    & > input {
-      width: 50px;
-      height: 50px;
-      border: 0.5px solid rgba(211, 211, 211, 1);
+        &__title {
+            @extend %title-10;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 1);
+            margin-bottom: 6px;
+            z-index: 1;
+        }
+    
+        &__subtitle {
+            @extend %title-10;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-weight: 300;
+            color: rgba(242, 250, 255, 1);
+            margin-bottom: 6px;
+            z-index: 1;
+    
+            & > div {
+                & > span {
+                    font-weight: 700;
+                    color: rgba(102, 112, 133, 1);
+                }
+            }
+    
+            & > button {
+                width: 59px;
+                height: 20px;
+                font-size: 8px;
+                font-weight: 700;
+                color: rgba(2, 10, 89, 1);
+                background: rgba(255, 255, 255, 1);
+                border-radius: 3px;
+                border: none;
+                z-index: 1;
+            }
+        }
+      }
 
-      border-radius: 4px;
+      & > label {
+        @extend %title-10;
+        margin-bottom: 5px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 700;
+      }
 
-      text-align: center;
+      &__input-with-icon {
+        @extend %primary-input;
+        display: flex;
+        align-items: center;
+        gap: 9.4px;
+        border-color: rgba(68, 64, 255, 1);
+        margin-bottom: 20px;
 
-      color: var(--Gray-Active-text-colour, #161616);
-      font-size: 24px;
-      font-weight: 600;
+        & > input {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
     }
 
-    // &__active {
-    //   border: 2px solid #028c4b !important;
-    //   outline: none;
-    // }
-  }
+    & > select {
+        @extend %primary-input;
+        border-color: rgba(68, 64, 255, 1);
+        margin-bottom: 20px;
+        color: rgba(68, 64, 255, 1);
+    }
+    & > button {
+        margin-top: 57px;
+        @extend %action-button;
+    }
+
+    &__upload-title {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 8px;
+    }
+
+    &__upload {
+        @extend %title-12;
+        width: 100%;
+        height: 90px;
+        padding: 0 19px;
+        background: rgba(243, 248, 255, 1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 6px;
+
+        &__title {
+            font-weight: 600;
+            color: rgba(68, 64, 255, 1);
+            margin: 10px;
+        }
+        &__subtitle {
+            font-weight: 400;
+            color: rgba(0, 0, 0, 1);
+            margin: 10px;
+        }
+    }
+}
 }
