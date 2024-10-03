@@ -1,0 +1,181 @@
+.personal-settings {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  padding: 20px;
+  margin: auto;
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 100px;
+
+  &__nav {
+    @extend %title-14;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 42px;
+    margin-top: 20px;
+  }
+
+  &__group {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+    margin-bottom: 30px;
+
+    &__title {
+      @extend %title-12;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    &__subtitle {
+      @extend %title-10;
+      font-weight: 300;
+      margin-bottom: 4px;
+      color: rgba(102, 112, 133, 1);
+    }
+  }
+
+  &__title {
+    @extend %title-14;
+    font-weight: 700;
+    color: rgba(102, 112, 133, 1);
+    margin-bottom: 14px;
+  }
+
+  &__modal {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    max-width: 430px;
+    background: #0000004b;
+    display: flex;
+    align-items: end;
+    z-index: 4;
+
+    &__inner {
+      width: 100%;
+      min-height: 322px;
+      border-radius: 20px 20px 0 0;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 10px 10px 42.23px 0px rgba(123, 123, 140, 0.6);
+      padding: 28px 16px 16px 16px;
+
+      &__title {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 28px;
+
+        & > div {
+          & > :first-child {
+            @extend %title-14;
+            font-weight: 700;
+            color: rgba(68, 64, 255, 1);
+            margin-bottom: 8px;
+
+            & > span {
+              font-weight: 700;
+            }
+          }
+          & > :last-child {
+            @extend %title-10;
+            font-weight: 300;
+            color: rgba(102, 112, 133, 1);
+          }
+        }
+      }
+
+      &__modes {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        margin-top: 29px;
+        margin-bottom: 72px;
+
+        & > div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &__box-light {
+          width: 60px;
+          height: 60px;
+          border-radius: 4px;
+          box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+          background: rgba(255, 255, 255, 1);
+          margin-bottom: 10px;
+        }
+        &__box-dark {
+          width: 60px;
+          height: 60px;
+          border-radius: 4px;
+          margin-bottom: 10px;
+          background: rgba(0, 0, 0, 1);
+          border: 0.4px solid rgba(64, 140, 255, 1);
+        }
+        &__box-active {
+          &__title {
+            font-weight: 700 !important;
+          }
+        }
+        &__title {
+          @extend %title-10;
+          font-weight: 300;
+          color: rgba(102, 112, 133, 1);
+        }
+      }
+
+      &__button {
+        @extend %action-button;
+      }
+
+      &__label {
+        margin-bottom: 6px;
+      }
+
+      &__input {
+        @extend %primary-input;
+        margin-bottom: 17px;
+      }
+
+      &__otp-inputs {
+        display: flex;
+        align-items: 'center';
+        justify-content: space-between;
+        margin-bottom: 31px;
+
+        &__input {
+          @extend %outlined-otp-input;
+          height: 45px;
+          width: 45px;
+        }
+      }
+
+      &__otp-inputs-mb-low {
+        margin-bottom: 16px !important;
+      }
+
+      &__forgot {
+        @extend %title-10;
+        font-weight: 500;
+        color: rgba(68, 64, 255, 1);
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .profile__modal__inner__input:first-child {
+        margin-top: 28px !important;
+        background: yellow !important;
+        display: none !important;
+      }
+    }
+  }
+}

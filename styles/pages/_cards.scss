@@ -1,0 +1,69 @@
+.cards {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+
+    &__nav {
+        @extend %title-14;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 42px;
+        margin-top: 20px;
+      }
+
+    
+
+      &__credit-cards {
+        width: 100%;
+        max-width: 380px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        overflow-x: auto;
+        margin-bottom: 40px;
+    
+        &::-webkit-scrollbar {
+          display: none;
+        }
+    
+        &__card {
+          position: relative;
+          min-width: 250px;
+          height: 120px;
+    
+          &__title {
+            @extend %title-8;
+            font-family: Nunito;
+            position: absolute;
+            color: rgba(222, 222, 222, 1);
+            left: 19px;
+            bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+    
+            &__title {
+              font-weight: 700;
+              color: rgba(255, 190, 22, 1);
+            }
+            &__subtitle {
+              font-weight: 300;
+              margin-bottom: 4px;
+            }
+          }
+        }
+    
+        & > :last-child {
+          .dashboard-main__credit-cards__card__title {
+            left: 63px;
+          }
+        }
+      }
+    }
