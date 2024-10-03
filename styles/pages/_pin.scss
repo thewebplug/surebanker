@@ -1,0 +1,75 @@
+.pin {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 20px 48px;
+    margin: auto;
+    &__image {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 44px;
+    }
+
+    &__title {
+        @extend %title-20;
+        font-weight: 400;
+        margin-bottom: 37px;
+        text-align: center;
+        color: rgba(68, 64, 255, 1);
+
+        & > span {
+            font-weight: 700;
+        }
+    }
+
+    &__view-code {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        margin: 0 auto;
+        gap: 26px;
+        margin-bottom: 37px;
+    }
+
+    &__subtitle {
+        @extend %title-12;
+        font-weight: 400;
+        color: rgba(102, 112, 133, 1);
+        margin-bottom: 34px;
+        text-align: center;
+
+        & > span {
+            font-weight: 700;
+        }
+    }
+
+    &__numbers {
+        display: grid;
+        grid-template-columns: 60px 60px 60px;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 45px;
+        margin-bottom: 61px;
+
+        & > div {
+            @extend %title-14;
+            font-weight: 700;
+            color: rgba(0, 114, 187, 1);
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(232, 232, 232, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__forgot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @extend %title-14;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 1);
+    }
+}

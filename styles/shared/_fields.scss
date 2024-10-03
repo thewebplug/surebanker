@@ -1,4 +1,4 @@
-label {
+label, %label {
   display: block;
   color: rgba(46, 44, 44, 1);
   font-size: 13px;
@@ -36,4 +36,18 @@ label {
   font-weight: 600;
   border: none;
   outline-color: #004B88;
+}
+
+.outlined-otp-input, %outlined-otp-input{
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  background: transparent;
+  text-align: center;
+  color: var(--Gray-Active-text-colour, #161616);
+  font-size: 24px;
+  font-weight: 600;
+  border: none;
+  border: 1px solid rgba(64, 140, 255, 1);
+  // outline-color: #004B88;
 }

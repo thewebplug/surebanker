@@ -1,0 +1,135 @@
+.fund {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+
+    &__nav {
+        @extend %title-14;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 42px;
+        margin-top: 20px;
+      }
+
+      &__image {
+        width: 100%;
+        height: 104px;
+        background: url("/assets/fund.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 6px;
+        margin-bottom: 21px;
+      }
+
+      &__card {
+        @extend %title-12;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 1);
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        border-radius: 6px;
+        padding:  0 20px;
+        gap: 59px;
+        background: #F0F0F0;
+        margin-bottom: 48px;
+        cursor: pointer;
+
+        & > svg {
+            z-index: 1;
+        }
+      }
+
+      &__modal {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 24px 24px 0px 0px;
+        height: 404px;
+        box-shadow: 0px -4px 4px 0px rgba(236, 236, 236, 1);
+        background: rgba(255, 255, 255, 1);
+        padding: 20px;
+        z-index: 2;
+
+        
+        &__title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 32px;
+
+            & > div {
+                & >:first-child {
+                    @extend %title-14;
+                    font-weight: 700;
+                    color: rgba(68, 64, 255, 1);
+                    margin-bottom: 5px;
+                }
+    
+                & >:last-child {
+                   @extend %title-10;
+                   font-weight: 300;
+                   color: rgba(124, 125, 128, 1); 
+
+                   & > span {
+                    font-weight: 700;
+                }
+                }
+            }
+        }
+
+        &__input {
+            @extend %title-14;
+            width: 100%;
+            height: 45px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border: 0.4px solid rgba(64, 140, 255, 1);
+            padding: 0 14px;
+            gap: 18px;
+            color: rgba(0, 0, 0, 1);
+            border-radius: 4px;
+            margin-bottom: 27px;
+        }
+
+        &__image {
+            width: fit-content;
+            margin: auto;
+            margin-bottom: 40px;
+        }
+
+        &__links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            margin: auto;
+            width: fit-content;
+
+            & > div {
+                @extend %title-8;
+                font-weight: 400;
+                color: rgba(124, 125, 128, 1);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                
+            }
+        }
+
+        
+
+      }
+}
