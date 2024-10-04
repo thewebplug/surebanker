@@ -20,6 +20,8 @@ export function middleware(request) {
 
   if (!token) {
     return NextResponse.redirect(new URL('/alt/login', request.url));
+    console.log('out');
+    
   }
 
   try {
