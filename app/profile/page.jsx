@@ -697,13 +697,14 @@ export default function Profile() {
                 account?
               </div>
 
-              {questions?.map((question) => (
+              {questions?.map((question, index) => (
                 <div
                   className={`profile__modal__inner__freeze-card ${
                     activeQuestion === question &&
                     "profile__modal__inner__freeze-card-active"
                   }`}
                   onClick={() => setActiveQuestion(question)}
+key={index}
                 >
                   {question}
                   {activeQuestion === question && (
