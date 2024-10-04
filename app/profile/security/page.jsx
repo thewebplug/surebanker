@@ -3,16 +3,18 @@
 import Image from "next/image"
 import ProfileHeader from "../../components/profile-header"
 import Navigation from "../../components/navigation"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Fund() {
-  const [passwordOpen, setPasswordOpen] = useState(true);
+  const [passwordOpen, setPasswordOpen] = useState(false);
   const [pinOpen, setPinOpen] = useState(false);
   const [stage, setStage] = useState(1);
 
   const handleToggleClose = (e) => {
+    
     if (e.target.classList.contains("personal-settings__modal")) {
       setPasswordOpen(false);
+      setPinOpen(false);
     }
   };
 
@@ -29,6 +31,28 @@ export default function Fund() {
     if(stage === 3) setStage(4)
     if(stage === 4) setStage(5)
   }
+
+  useEffect(() => {
+    const otpInputs = document.querySelectorAll(".personal-settings__modal__inner__otp-inputs__input");
+
+    otpInputs.forEach((input, index) => {
+      input.addEventListener("input", (event) => {
+        const inputValue = event.target.value;
+
+        if (inputValue && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Backspace" && index > 0 && !input.value) {
+          otpInputs[index - 1].focus();
+          event.preventDefault();
+        }
+      });
+    });
+  },[pinOpen, stage]);
+  
     return (
       <div className="personal-settings">
         <ProfileHeader />
@@ -40,7 +64,7 @@ export default function Fund() {
             viewBox="0 0 30 30"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            onClick={() => (window.location.href = "/")}
+            onClick={() => (window.location.href = "/profile")}
           >
             <circle cx="15" cy="15" r="15" fill="#D9D9D9" />
             <path
@@ -52,7 +76,9 @@ export default function Fund() {
           <div>Security</div>
         </div>
 
-        <div className="personal-settings__group">
+        <div className="personal-settings__group"
+        onClick={() => setPasswordOpen(true)}
+        >
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="15" cy="15" r="15" fill="#F5F5F5"/>
 <path d="M17.333 11.4993V12.0827H17.7705C18.8175 12.0827 19.6663 12.9315 19.6663 13.9785V15.3022C19.3382 15.1061 19.0719 14.8698 18.9022 14.7002C18.523 14.3213 17.8872 14.3213 17.508 14.7002C17.1988 15.0092 16.5688 15.5397 15.828 15.6447C15.7917 15.6499 15.7551 15.6575 15.7187 15.6673C15.5607 15.4399 15.2976 15.291 14.9997 15.291C14.5164 15.291 14.1247 15.6828 14.1247 16.166C14.1247 16.6492 14.5164 17.041 14.9997 17.041V18.2215C14.9997 18.967 15.2053 19.6538 15.602 20.2493H12.2288C11.1818 20.2493 10.333 19.4005 10.333 18.3535V13.9785C10.333 12.9315 11.1818 12.0827 12.2288 12.0827H12.6663V11.4993C12.6663 10.2107 13.711 9.16602 14.9997 9.16602C16.2883 9.16602 17.333 10.2107 17.333 11.4993ZM13.5413 11.4993V12.0827H16.458V11.4993C16.458 10.6939 15.8051 10.041 14.9997 10.041C14.1943 10.041 13.5413 10.6939 13.5413 11.4993ZM18.4936 15.1128C18.8743 15.4925 19.606 16.0963 20.5058 16.2201C20.6852 16.2449 20.833 16.3865 20.833 16.5637V18.2195C20.833 20.4455 18.745 21.2534 18.2936 21.4021C18.2371 21.4207 18.1794 21.4207 18.1228 21.4021C17.6714 21.2534 15.5832 20.4455 15.5832 18.2195L15.583 16.5637C15.583 16.3865 15.7308 16.2449 15.9103 16.2201C16.8099 16.0962 17.5415 15.4925 17.9223 15.1128C18.0741 14.9615 18.3419 14.9615 18.4936 15.1128Z" fill="#212121"/>
@@ -60,11 +86,13 @@ export default function Fund() {
 
 
 <div>
-    <div className="personal-settings__group__title">Pin</div>
-    <div className="personal-settings__group__subtitle">Update your transaction pin</div>
+    <div className="personal-settings__group__title">Password</div>
+    <div className="personal-settings__group__subtitle">Update your password</div>
 </div>
     </div>
-    <div className="personal-settings__group">
+    <div className="personal-settings__group"
+        onClick={() => setPinOpen(true)}
+        >
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="15" cy="15" r="15" fill="#F5F5F5"/>
 <g clip-path="url(#clip0_2512_3348)">
@@ -293,7 +321,7 @@ Forgot Old Pin?
 
               <div>
                 <div>Enter <span>OTP</span></div>
-                <div>Update your Pin by providing the old Pin, or using the forgot Pin option</div>
+                <div>Provide the OTP sent to your email mu****ak@gmail.com</div>
               </div>
             </div>
           
@@ -305,12 +333,10 @@ Forgot Old Pin?
             </div>
            
 
-<div className="personal-settings__modal__inner__forgot">
-Forgot Old Pin?
-</div>
+
 
             <button className="personal-settings__modal__inner__button">
-            Send OTP
+            Confirm OTP
             </button>
           </form>}
 
@@ -324,8 +350,8 @@ Forgot Old Pin?
 </svg>
 
               <div>
-                <div><span>Enter New Password</span></div>
-                <div>Proceed to updating your password</div>
+                <div><span>Enter New Pin</span></div>
+                <div>Proceed to updating your pin</div>
               </div>
             </div>
             <label className="personal-settings__modal__inner__label" htmlFor="">New Pin</label>
@@ -344,7 +370,7 @@ Forgot Old Pin?
             </div>
 
             <button className="personal-settings__modal__inner__button">
-            Update Password
+            Update Pin
             </button>
           </form>}
       

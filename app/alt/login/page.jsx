@@ -89,14 +89,14 @@ export default function Login() {
           Dont have an account?{" "}
           <span
             className="pointer"
-            onClick={() => (window.location.href = "/auth/register")}
+            onClick={() => (window.location.href = "/alt")}
           >
             Register
           </span>
         </div>
         <div
           className="pointer"
-          onClick={() => (window.location.href = "/auth/forgot-password")}
+          onClick={() => (window.location.href = "/alt/forgot-password")}
         >
           Forgot Password
         </div>

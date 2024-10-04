@@ -24,6 +24,7 @@
     align-items: center;
     gap: 19px;
     margin-bottom: 30px;
+    cursor: pointer;
 
     &__title {
       @extend %title-12;

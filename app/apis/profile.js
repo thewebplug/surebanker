@@ -10,7 +10,7 @@ token
       };
   try {
     const res = await axios.get(
-      `http://44.243.70.60:4000/auth/profile`,
+      `https://api.dev.surebanker.ai/auth/profile`,
       config
     );
 

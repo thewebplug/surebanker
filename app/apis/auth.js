@@ -27,7 +27,7 @@ export const signUp = async (
   
   try {
     const res = await axios.post(
-      `http://44.243.70.60:4000/auth/signup`,
+      `https://api.dev.surebanker.ai/auth/signup`,
       {
         email,
         password,
@@ -59,7 +59,7 @@ export const login = async (
   
   try {
     const res = await axios.post(
-      `http://44.243.70.60:4000/auth/login`,
+      `https://api.dev.surebanker.ai/auth/login`,
       {
         username,
         password,
@@ -80,7 +80,7 @@ export const sendOtp = async (
   
   try {
     const res = await axios.post(
-      `http://44.243.70.60:4000/auth/send-otp`,
+      `https://api.dev.surebanker.ai/auth/send-otp`,
       {
         phone
       }
