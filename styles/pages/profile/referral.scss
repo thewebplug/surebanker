@@ -1,0 +1,76 @@
+.referral {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 100px;
+  
+    &__nav {
+      @extend %title-14;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 42px;
+      margin-top: 20px;
+    }
+
+    &__title {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(102, 112, 133, 1);
+        margin-bottom: 70px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    &__label {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+
+        & > span {
+            font-weight: 500;
+            color: rgba(68, 64, 255, 1);
+        }
+    }
+
+
+    &__input {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border: 0.3px solid rgba(68, 64, 255, 1);
+        border-radius: 6px;
+       background: rgba(248, 248, 248, 1);
+       padding: 0 21px;
+       gap: 113px;
+       margin-bottom: 64px;
+cursor: pointer;
+    }
+
+    &__socials {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    &__button {
+        @extend %error-button;
+    }
+
+    &__bg-image {
+        position: absolute;
+        top: 95px;
+        right: 74px;
+      }
+
+  
+}

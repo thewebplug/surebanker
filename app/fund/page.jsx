@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function Fund() {
   const [openPaymentLink, setOpenPaymentLink] = useState(false);
   const [openBarcode, setOpenBarcode] = useState(false);
-  const [openCard, setOpenCard] = useState(true);
+  const [openCard, setOpenCard] = useState(false);
   const [stage, setStage] = useState(3);
 
   const handleModalClose = (e) => {

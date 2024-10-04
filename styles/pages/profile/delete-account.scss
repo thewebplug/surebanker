@@ -1,0 +1,107 @@
+.delete-account {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 100px;
+  
+    &__nav {
+      @extend %title-14;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 42px;
+      margin-top: 20px;
+    }
+
+    &__title {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(102, 112, 133, 1);
+        margin-bottom: 70px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+
+    &__input {
+        @extend %primary-input;
+        margin-bottom: 91px;
+        height: 124px;
+        padding: 16px;
+    }
+
+    &__button {
+        @extend %error-button;
+    }
+
+    &__bg-image {
+        position: absolute;
+        top: 95px;
+        right: 74px;
+      }
+
+      &__modal {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 100%;
+        max-width: 430px;
+        background: #0000004b;
+        display: flex;
+        align-items: end;
+        z-index: 4;
+    
+        &__inner {
+            width: 100%;
+            min-height: 332px;
+            border-radius: 20px 20px 0 0;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 10px 10px 42.23px 0px rgba(123, 123, 140, 0.6);
+            padding: 28px 16px 16px 16px;
+    
+            &__title {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                margin-bottom: 38px;
+    
+                & > div {
+                    & >:first-child {
+                        @extend %title-14;
+                        font-weight: 700;
+                        color: rgba(68, 64, 255, 1);
+                        margin-bottom: 8px;
+                    }
+                    & >:last-child {
+                        @extend %title-10;
+                        font-weight: 300;
+                        color: rgba(102, 112, 133, 1);
+                    }
+                }
+            }
+    
+            &__subtitle {
+              @extend %title-10;
+              font-weight: 500;
+              margin: 40px 0 27px 0;
+              color: rgba(102, 112, 133, 1);
+            }
+    
+    
+            &__button {
+                @extend %action-button;
+            }
+    
+            
+        }
+      }
+}

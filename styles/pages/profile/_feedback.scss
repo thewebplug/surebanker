@@ -1,0 +1,58 @@
+.feedback {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+    margin: auto;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 100px;
+  
+    &__nav {
+      @extend %title-14;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 42px;
+      margin-top: 20px;
+    }
+
+    &__title {
+        @extend %title-10;
+        font-weight: 300;
+        color: rgba(102, 112, 133, 1);
+        margin-bottom: 70px;
+    }
+
+    &__emojis {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        & > div {
+            @extend %title-10;
+            font-weight: 300;
+            color: rgba(82, 82, 82, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
+
+    &__input {
+        @extend %primary-input;
+        margin-bottom: 91px;
+        height: 124px;
+        padding: 16px;
+    }
+
+    &__button {
+        @extend %action-button;
+    }
+
+}
