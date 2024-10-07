@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Pin() {
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -23,6 +23,14 @@ export default function Pin() {
       setPin(temp);
     }
   }
+
+  useEffect(() => {
+    if(pin?.length > 5) {
+      setTimeout(() => {
+        window.location.href ="/"
+      }, 2000);
+    }
+  }, [pin])
   return (
     <div className="pin">
       <div className="pin__image">
@@ -34,7 +42,22 @@ export default function Pin() {
       </div>
       <div className="pin__view-code">
         {pin?.length > 0 ? (
-          "Pin"
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.25"
+              fill="black"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
         ) : (
           <svg
             width="15"
@@ -54,7 +77,22 @@ export default function Pin() {
           </svg>
         )}
         {pin?.length > 1 ? (
-          "Pin"
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.25"
+              fill="black"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
         ) : (
           <svg
             width="15"
@@ -74,7 +112,22 @@ export default function Pin() {
           </svg>
         )}
         {pin?.length > 2 ? (
-          "Pin"
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.25"
+              fill="black"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
         ) : (
           <svg
             width="15"
@@ -95,7 +148,22 @@ export default function Pin() {
         )}
 
         {pin?.length > 3 ? (
-          "Pin"
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.25"
+              fill="black"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
         ) : (
           <svg
             width="15"
@@ -115,7 +183,22 @@ export default function Pin() {
           </svg>
         )}
         {pin?.length > 4 ? (
-          "Pin"
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.25"
+              fill="black"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
         ) : (
           <svg
             width="15"
@@ -135,7 +218,22 @@ export default function Pin() {
           </svg>
         )}
         {pin?.length > 5 ? (
-          "Pin"
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.25"
+              fill="black"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
         ) : (
           <svg
             width="15"

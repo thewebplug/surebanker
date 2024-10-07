@@ -26,7 +26,7 @@ export default function Fund() {
           <div>Feedback</div>
         </div>
 
-        <div className="feedback__title">How has your experience been so far on JobsPro?</div>
+        <div className="feedback__title">How has your experience been so far on Surebanker?</div>
        <div className="feedback__emojis">
         <div>
         <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
