@@ -18,9 +18,9 @@ export function middleware(request) {
   // For other paths, check for a token in cookies
   const token = request.cookies.get('auth_token')?.value;
 
-  // if (!token) {
-  //   return NextResponse.redirect(new URL('/alt/login', request.url));
-  // }
+  if (!token) {
+    return NextResponse.redirect(new URL('/alt/login', request.url));
+  }
 
   try {
     // Decode the JWT token
@@ -42,9 +42,9 @@ export function middleware(request) {
   } catch (error) {
     // If there's an error decoding the token, consider it invalid
     console.error('Error decoding token:', error);
-    // const response = NextResponse.redirect(new URL('/alt/login', request.url));
-    // response.cookies.delete('auth_token');
-    // return response;
+    const response = NextResponse.redirect(new URL('/alt/login', request.url));
+    response.cookies.delete('auth_token');
+    return response;
   }
 }
 
