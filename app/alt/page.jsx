@@ -53,7 +53,7 @@ export default function Auth() {
         });
         window.location.href = "/alt/login";
       }else {
-        alert("Something went wrong")
+        alert(response?.data?.message)
       }
     }
     setLoading(false);

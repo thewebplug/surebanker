@@ -45,6 +45,7 @@ export const signUp = async (
     return res;
   } catch (error) {
     console.log("ERROR", error);
+    return error?.response;
   }
 };
 
@@ -69,6 +70,7 @@ export const login = async (
     return res;
   } catch (error) {
     console.log("ERROR", error);
+    return error?.response;
   }
 };
 export const sendOtp = async (
@@ -89,5 +91,6 @@ export const sendOtp = async (
     return res;
   } catch (error) {
     console.log("ERROR", error);
+    return error?.response;
   }
 };

@@ -31,7 +31,7 @@ export default function Login() {
       });
       window.location.href = "/";
     } else {
-      alert("Something went wrong");
+      alert(response?.data?.message)
     }
     setLoading(false);
   };
