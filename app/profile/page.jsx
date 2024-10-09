@@ -328,7 +328,9 @@ export default function Profile() {
         </div>
         <div className="profile__inner__title">Help</div>
 
-        <div className="profile__inner__group">
+        <div className="profile__inner__group"
+        onClick={() => (window.location.href = "/profile/faq")}
+        >
           <div>
             <Image src="/assets/feedback.png" width={15} height={23.68} />
 
