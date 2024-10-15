@@ -3,12 +3,38 @@
 import Navigation from "@/app/components/navigation";
 import ProfileHeader from "@/app/components/profile-header";
 import Image from "next/image";
+import { verifyBvn } from '@/app/apis/kyc'
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Kyc() {
+  const auth = useSelector((state) => state.auth);
+  
+  const [bvn, setBvn] = useState("");
+  const [gender, setGender] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleVerifyBvn = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+    const response = await verifyBvn(auth?.userInfo?.finclusionId
+      , bvn, gender, auth?.token);
+    console.log('response', response);
+
+    if(response?.status === 200) {
+      alert("BVN verification successful!");
+      setTimeout(() => {
+        window.location.href = "/profile/tiers";
+      }, 2000);
+    }else {
+      alert(response?.data?.message)
+    }
+    setLoading(false)
+  }
   return (
     <div className="kyc">
       <ProfileHeader />
-      <div className="kyc__inner">
+      <form className="kyc__inner" onSubmit={handleVerifyBvn}>
         <div
           className="kyc__inner__nav"
           onClick={() => (window.location.href = "/profile/kyc/tiers")}
@@ -76,7 +102,28 @@ export default function Kyc() {
               </clipPath>
             </defs>
           </svg>
-          <input type="text" placeholder="Enter BVN" />
+          <input
+            type="text"
+            placeholder="Enter BVN"
+            required
+            value={bvn}
+            onChange={(e) => setBvn(e.target.value)}
+          />
+        </div>
+        <label htmlFor="">Gender</label>
+
+        <div className="kyc__inner__input-with-icon">
+          <select
+            name=""
+            id=""
+            value={gender}
+            required
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
         <label htmlFor="">Facebook</label>
 
@@ -117,16 +164,24 @@ export default function Kyc() {
         <label htmlFor="">Twitter</label>
 
         <div className="kyc__inner__input-with-icon">
-        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.83333 0C1.71624 0 0 1.71624 0 3.83333V19.1667C0 21.2838 1.71624 23 3.83333 23H19.1667C21.2838 23 23 21.2838 23 19.1667V3.83333C23 1.71624 21.2838 0 19.1667 0H3.83333ZM4.97563 4.92857H9.32236L12.4091 9.31487L16.1548 4.92857H17.5238L13.0273 10.193L18.572 18.0714H14.2263L10.6443 12.9824L6.29762 18.0714H4.92857L10.0261 12.1043L4.97563 4.92857ZM7.07199 6.02381L14.7975 16.9762H16.4756L8.75014 6.02381H7.07199Z" fill="#212121"/>
-</svg>
-
+          <svg
+            width="23"
+            height="23"
+            viewBox="0 0 23 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.83333 0C1.71624 0 0 1.71624 0 3.83333V19.1667C0 21.2838 1.71624 23 3.83333 23H19.1667C21.2838 23 23 21.2838 23 19.1667V3.83333C23 1.71624 21.2838 0 19.1667 0H3.83333ZM4.97563 4.92857H9.32236L12.4091 9.31487L16.1548 4.92857H17.5238L13.0273 10.193L18.572 18.0714H14.2263L10.6443 12.9824L6.29762 18.0714H4.92857L10.0261 12.1043L4.97563 4.92857ZM7.07199 6.02381L14.7975 16.9762H16.4756L8.75014 6.02381H7.07199Z"
+              fill="#212121"
+            />
+          </svg>
 
           <input type="text" placeholder="Enter Twitter username" />
         </div>
 
-        <button>Submit</button>
-      </div>
+        <button disabled={loading}>{loading ? "Loading..." : "Submit"}</button>
+      </form>
 
       <Navigation />
     </div>

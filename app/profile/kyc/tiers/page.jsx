@@ -1,10 +1,28 @@
 "use client"
 
+import { checkKycStatus } from "@/app/apis/kyc";
 import Navigation from "@/app/components/navigation"
 import ProfileHeader from "@/app/components/profile-header"
 import Image from "next/image"
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Kyc() {
+  const auth = useSelector((state) => state.auth);
+
+  const [loading, setLoading] = useState(false);
+
+  const handleVerifyBvn = async () => {
+    setLoading(true)
+    const response = await checkKycStatus(auth?.userInfo?.finclusionId, auth?.token);
+    console.log('response stee', response);
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    handleVerifyBvn();
+  }, [])
+
     return (
         <div className="kyc">
             <ProfileHeader />

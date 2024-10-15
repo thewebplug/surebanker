@@ -153,13 +153,13 @@ export default function Landing() {
             <Image src="/assets/airtime.png" objectFit="cover" layout="fill" />
             <div>Airtime</div>
           </div>
-          <div
+          {/* <div
             className="dashboard-main__cards__card"
             onClick={() => (window.location.href = "/data")}
           >
             <Image src="/assets/airtime.png" objectFit="cover" layout="fill" />
             <div>Data</div>
-          </div>
+          </div> */}
         </div>
 
         <div className="dashboard-main__credit-cards">

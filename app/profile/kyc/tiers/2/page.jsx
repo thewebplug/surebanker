@@ -1,18 +1,42 @@
 "use client";
 
+import { verifyNin } from "@/app/apis/kyc";
 import Navigation from "@/app/components/navigation";
 import ProfileHeader from "@/app/components/profile-header";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Kyc() {
+  const auth = useSelector((state) => state.auth);
   const [image, setImage] = useState("");
+  const [nin, setNin] = useState("");
+  const [gender, setGender] = useState("");
+  const [loading, setLoading] = useState(false);
   const mediaRef = useRef(null);
+
+  const handleVerifyNin = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+    const response = await verifyNin(auth?.userInfo?.finclusionId
+      , nin, gender, auth?.token);
+    console.log('response', response);
+
+    if(response?.status === 200) {
+      alert("BVN verification successful!");
+      setTimeout(() => {
+        window.location.href = "/profile/tiers";
+      }, 2000);
+    }else {
+      alert(response?.data?.message)
+    }
+    setLoading(false)
+  }
 
   return (
     <div className="kyc">
       <ProfileHeader />
-      <div className="kyc__inner">
+      <form className="kyc__inner" onSubmit={handleVerifyNin}>
         <div
           className="kyc__inner__nav"
           onClick={() => (window.location.href = "/profile/kyc/tiers")}
@@ -58,7 +82,26 @@ export default function Kyc() {
 <path d="M15.0599 16.3982C17.8719 16.3982 18.2746 15.0971 15.9338 13.5398C14.9452 12.8832 13.7565 12.5 12.4799 12.5C11.2033 12.5 10.017 12.8832 9.02596 13.5398C6.68267 15.0971 7.08786 16.3982 9.89981 16.3982H15.0599Z" fill="#FFBE16"/>
 </svg>
 
-          <input type="text" placeholder="" />
+          <input type="text" placeholder="" value={nin}
+            onChange={(e) => setNin(e.target.value)} required />
+        </div>
+
+        <label htmlFor="">Gender</label>
+
+        <div className="kyc__inner__input-with-icon">
+       
+
+<select
+            name=""
+            id=""
+            value={gender}
+            required
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
 
     <label className="kyc__inner__upload">
@@ -94,8 +137,8 @@ height={40}
               />
 
     </label>
-        <button>Submit</button>
-      </div>
+    <button disabled={loading}>{loading ? "Loading..." : "Submit"}</button>
+      </form>
 
       <Navigation />
     </div>
