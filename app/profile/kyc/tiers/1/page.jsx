@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 export default function Kyc() {
   const auth = useSelector((state) => state.auth);
+  console.log('auth', auth);
   
   const [bvn, setBvn] = useState("");
   const [gender, setGender] = useState("");
@@ -21,11 +22,11 @@ export default function Kyc() {
       , bvn, gender, auth?.token);
     console.log('response', response);
 
-    if(response?.status === 200) {
-      alert("BVN verification successful!");
-      setTimeout(() => {
-        window.location.href = "/profile/tiers";
-      }, 2000);
+    if(response?.status === 201) {
+      window.open(response?.data?.result?.data?.url);
+      // setTimeout(() => {
+        window.location.href = "/profile/kyc/tiers";
+      // }, 2000);
     }else {
       alert(response?.data?.message)
     }

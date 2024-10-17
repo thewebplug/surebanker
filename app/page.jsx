@@ -6,13 +6,32 @@ import Navigation from "./components/navigation";
 import TransactionPinSuccess from "./components/transaction-pin-success";
 import TransactionPinFail from "./components/transaction-pin-fail";
 import { useSelector } from "react-redux";
+import { getAccountDetails } from "./apis/transactions";
 
 export default function Landing() {
   const auth = useSelector((state) => state.auth);
+  console.log('auth', auth);
+  
   const [isClient, setIsClient] = useState(false);
+  const [account, setAccount] = useState(false);
+
+ 
+
+  const handleGetAccountInfo = async () => {
+    const response = await getAccountDetails(auth?.userInfo?.finclusionId, auth?.token);
+
+    // if (response?.status === 200) {
+    //   setEvents(response?.data);
+    // } else {
+    //   alert(response?.data?.message);
+    // }
+    setAccount(response?.data?.data)
+    console.log('getAccountDetails', response);
+  }
 
   useEffect(() => {
     setIsClient(true);
+    handleGetAccountInfo();
   }, []);
   return (
     <>
@@ -78,11 +97,9 @@ export default function Landing() {
         </div>
       </header>
       <main className="dashboard-main">
-        <h1 className="dashboard-main__title">Total Balance</h1>
-        <h2 className="dashboard-main__subtitle">
+        <h1 className="dashboard-main__title">
           <div>
-            ₦ 0 <span>.00</span>
-          </div>
+          <div>Total Balance</div>
           <div className="dashboard-main__subtitle__icon">
             <svg
               width="24"
@@ -117,6 +134,20 @@ export default function Landing() {
               />
             </svg>
           </div>
+          </div>
+
+          <div className="dashboard-main__title__acc-no">
+          Acc No : {account?.finclusionAccountNumber} <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.20964 2.69846L3.20801 3.93685V10.0643C3.20801 11.1113 4.0568 11.9601 5.10384 11.9601L10.13 11.9603C9.94977 12.47 9.46367 12.8351 8.89224 12.8351H5.10384C3.57355 12.8351 2.33301 11.5946 2.33301 10.0643V3.93685C2.33301 3.36477 2.69902 2.87817 3.20964 2.69846ZM10.3538 1.16602C11.0787 1.16602 11.6663 1.75364 11.6663 2.47852V10.0618C11.6663 10.7867 11.0787 11.3743 10.3538 11.3743H5.10384C4.37897 11.3743 3.79134 10.7867 3.79134 10.0618V2.47852C3.79134 1.75364 4.37897 1.16602 5.10384 1.16602H10.3538Z" fill="#667085"/>
+</svg>
+
+          </div>
+        </h1>
+        <h2 className="dashboard-main__subtitle">
+          <div>
+            ₦ {account?.walletBalance?.split(".")[0] ? account?.walletBalance?.split(".")[0] : "0"} <span>.{account?.walletBalance?.split(".")[1] ? account?.walletBalance?.split(".")[1] : "00"}</span>
+          </div>
+          
         </h2>
 
         <div className="dashboard-main__cards">

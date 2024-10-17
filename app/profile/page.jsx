@@ -275,7 +275,9 @@ export default function Profile() {
             />
           </svg>
         </div>
-        <div className="profile__inner__group">
+        <div className="profile__inner__group"
+        onClick={() => window.location.href = "/profile/security"}
+        >
           <div>
             <Image src="/assets/password.png" width={25} height={34.04} />
 

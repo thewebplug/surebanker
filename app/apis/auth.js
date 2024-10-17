@@ -94,3 +94,38 @@ export const sendOtp = async (
     return error?.response;
   }
 };
+
+
+
+export const initiateChangePassword = async (
+  oldPassword,
+  newPassword,
+  token
+) => {
+  console.log('request', {
+    oldPassword,
+    newPassword,
+  });
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      `https://api.dev.surebanker.ai/auth/initiate-change-password`,
+      {
+        oldPassword,
+        newPassword,
+      },
+      config
+    );
+
+    return res;
+  } catch (error) {
+    console.log("ERROR", error);
+    return error?.response;
+  }
+};
