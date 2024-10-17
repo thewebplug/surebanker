@@ -41,16 +41,16 @@ export default function Auth() {
       console.log("response form sign up", response);
 
       if (response?.status === 201) {
-        localStorage.setItem("token", response?.data?.token);
-        document.cookie = `auth_token=${
-          response?.data?.token
-        }; path=/; max-age=${60 * 60 * 24 * 7};`;
-        dispatch({
-          type: "USER_LOGIN_SUCCESS",
-          payload: {
-            token: response?.data?.token,
-          },
-        });
+        // localStorage.setItem("token", response?.data?.token);
+        // document.cookie = `auth_token=${
+        //   response?.data?.token
+        // }; path=/; max-age=${60 * 60 * 24 * 7};`;
+        // dispatch({
+        //   type: "USER_LOGIN_SUCCESS",
+        //   payload: {
+        //     token: response?.data?.token,
+        //   },
+        // });
         window.location.href = "/alt/login";
       }else {
         alert(response?.data?.message)
