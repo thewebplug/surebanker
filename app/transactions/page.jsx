@@ -14,7 +14,7 @@ export default function Transaction() {
   const auth = useSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
   const [account, setAccount] = useState(false);
-  const [inputWidth, setInputWidth] = useState(70);
+  const [inputWidth, setInputWidth] = useState(90);
   const [banks, setBanks] = useState([]);
   const [filteredBanks, setFilteredBanks] = useState([]);
   const [bankCode, setBankCode] = useState("");
@@ -107,7 +107,7 @@ export default function Transaction() {
           input.value,
           getComputedStyle(input).font
         );
-        const newWidth = Math.min(Math.max(70, textWidth + 10), maxWidth);
+        const newWidth = Math.min(Math.max(90, textWidth + 10), maxWidth);
         setInputWidth(newWidth);
       }
     };
@@ -139,13 +139,25 @@ export default function Transaction() {
       toWalletId,
       Number(amount),
       0,
-      "P2P",
+      "intra",
       description,
       auth?.token
     );
 
     // setBanks(response?.data?.data);
-    console.log("verifyBank", response);
+    console.log("walletToWallet", response);
+
+    if (response?.status === 201) {
+      alert("Transfer successful");
+      setToWalletId("");
+      setAmount("");
+      setDescription("");
+      setFilteredBanks([...banks]);
+      setAccountNo("");
+      setBankName("");
+    } else {
+      alert(response?.data?.message);
+    }
     setLoading(false);
   };
 
