@@ -95,6 +95,26 @@ export default function TransactionHistoryStatement() {
           onClick={() => setTab("Credit")}
         >Credit</div>
       </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+      <button className="transaction__button">
+      Generate Report
+      </button>
     </div>
   );
 }

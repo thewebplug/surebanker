@@ -4,14 +4,31 @@ import Image from "next/image";
 import Navigation from "../components/navigation";
 import ProfileHeader from "../components/profile-header";
 import { useEffect, useState } from "react";
+import { getAccountDetails } from "../apis/transactions";
+
+import {
+  getBillerListByCategory,
+  fetchBillerItem,
+  validateCustomer,
+  purchaseBill,
+} from "../apis/biling";
+import { useSelector } from "react-redux";
 
 export default function Data() {
+  const auth = useSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
+  const [account, setAccount] = useState(false);
   const [automatedOpen, setAutomatedOpen] = useState(false);
   const [automateTopup, setAutomateTopup] = useState(true);
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState(0);
+  const [providers, setProviders] = useState([]);
+  const [selectedProvider, setSelectedProvider] = useState(null);
+  const [providerName, setProviderName] = useState(null);
+  const [customerId, setCustomerId] = useState(null);
+  const [paymentItem, setPaymentItem] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleAutomateTopup = () => {
     if (automateTopup) {
@@ -21,10 +38,27 @@ export default function Data() {
       setAutomateTopup(true);
     }
   };
-
-  const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
-    setOpen(true);
+
+    const responseThree = await purchaseBill(
+      customerId,
+      selectedProvider?.division,
+      paymentItem,
+      selectedProvider?.product,
+      selectedProvider?.id,
+      auth?.userInfo?.finclusionId,
+      Number(amount),
+      phone,
+      auth?.token
+    );
+    console.log("validateCustomer", responseThree);
+
+    if (responseThree?.status === 201) {
+      alert("Airtime purchase successful")
+    } else {
+      alert(responseThree?.data?.message);
+    }
   };
 
   const handleOtpSubmit = (e) => {
@@ -55,6 +89,85 @@ export default function Data() {
       });
     });
   }, [open]);
+
+  const handleGetAccountInfo = async () => {
+    const response = await getAccountDetails(
+      auth?.userInfo?.finclusionId,
+      auth?.token
+    );
+
+    // if (response?.status === 200) {
+    //   setProviders(response?.data?.data);
+    // } else {
+    //   alert(response?.data?.message);
+    // }
+    console.log("getAccountDetails", response);
+    setAccount(response?.data?.data);
+  };
+
+  const handleGetBillerListByCategory = async () => {
+    const response = await getBillerListByCategory("Data", auth?.token);
+
+    if (response?.status === 200) {
+      setProviders(response?.data?.data);
+    } else {
+      alert(response?.data?.message);
+    }
+    console.log("getBillerListByCategory", response);
+    // setAccount(response?.data?.data)
+  };
+
+  const handleFetchBillerItem = async (data) => {
+    if (!!data) {
+      setLoading(true);
+      const response = await fetchBillerItem(
+        data?.division,
+        data?.product,
+        data?.id,
+        auth?.token
+      );
+
+      if (response?.status === 201) {
+        // setProviders(response?.data?.data);
+        setCustomerId(response?.data?.data[0]?.id);
+        setPaymentItem(response?.data?.data[0]?.paymentitemid);
+        const responseTwo = await validateCustomer(
+          data?.division,
+          response?.data?.data[0]?.paymentitemid,
+          response?.data?.data[0]?.id,
+          data?.id,
+          auth?.token
+        );
+        console.log("validateCustomer", responseTwo);
+
+        if (responseTwo?.status === 201) {
+        } else {
+          alert(responseTwo?.data?.message);
+        }
+      } else {
+        alert(response?.data?.message);
+      }
+      console.log("fetchBillerItem", response);
+      // setAccount(response?.data?.data)
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // setIsClient(true);
+    handleGetAccountInfo();
+    handleGetBillerListByCategory();
+  }, []);
+
+  useEffect(() => {
+    console.log("providerName", providerName);
+
+    const temp = providers?.filter((item) => item?.id === providerName);
+
+    handleFetchBillerItem(temp[0]);
+    setSelectedProvider(temp[0]);
+  }, [providerName]);
+
 
   return (
     <div className="surebanker-data">
@@ -150,11 +263,32 @@ export default function Data() {
             onChange={(e) => setPhone(e.target.value)}
             required
           />
-          <select name="" id="">
-            <option value="">MTN</option>
+          <select
+            name=""
+            id=""
+            value={providerName}
+            onChange={(e) => {
+              setProviderName(e.target.value);
+            }}
+          >
+            <option value="">Select provider</option>
+            {providers?.map((provider) => (
+              <option value={provider.id}>{provider?.name}</option>
+            ))}
           </select>
         </div>
 
+        <label className="surebanker-data__category__title">Enter Amount</label>
+
+<input
+  type="number"
+  value={amount}
+  onChange={(e) => setAmount(e.target.value)}
+  required
+/>
+
+<br />
+<br />
         <label className="surebanker-data__category__title">
           Select Category
         </label>
@@ -246,8 +380,8 @@ export default function Data() {
           recurring Monthly
         </div>
 
-        <button type="submit" className="surebanker-data__button">
-          Submit
+        <button type="submit" className="surebanker-data__button" disabled={loading}>
+          {loading ? "Loading..." : "Submit"}
         </button>
       </form>
 

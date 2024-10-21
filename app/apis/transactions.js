@@ -125,3 +125,45 @@ export const verifyBank = async (
     return error?.response;
   }
 };
+export const walletToBank = async (
+    amount,
+  accountNo,
+  bankCode,
+  remarks,
+  id,
+  token
+) => {
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      console.log({
+        amount,
+  accountNo,
+  bankCode,
+  remarks,
+  id,
+  token
+      });
+      
+
+  try {
+    const res = await axios.post(
+      `https://api.dev.surebanker.ai/transactions/withdraw/${id}`,
+      {
+        amount,
+        accountNo,
+        bankCode,
+        remarks
+      },
+      config
+    );
+
+    return res;
+  } catch (error) {
+    console.log("ERROR", error);
+    return error?.response;
+  }
+};

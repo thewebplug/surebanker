@@ -81,6 +81,49 @@
     }
   }
 
+   &__tab {
+    display: flex;
+    align-items: center;
+    margin-bottom: 36px;
+
+    & > div {
+      @extend %title-12;
+      font-weight: 400;
+      color: #667085;
+      width: 72px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    &__active {
+      font-weight: 700 !important;
+      position: relative;
+      border-radius: 20px;
+      background: #FFF;
+      
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px; /* Should match the main div's border-radius */
+        padding: 2px; /* This determines the border width */
+        background: linear-gradient(180deg, #ffbe16 0%, #4440ff 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+    }
+  }
+
+
   &__form {
     padding-bottom: 60px;
   }
@@ -328,6 +371,32 @@
     margin-bottom: 25px;
   }
 
+  &__save-schedule {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      & > input  {
+        width: 20px;
+        height: 20px;
+        background: #D9D9D9;
+        border-radius: 4px;
+      }
+
+      & > div {
+        @extend %title-10;
+        font-weight: 300;
+        color: #000000;
+      }
+    }
+  }
+
   &__button {
     @extend %action-button;
     margin-top: 49px;
@@ -529,6 +598,84 @@
     &__active {
       background: rgba(255, 190, 22, 1);
       font-weight: 700 !important;
+    }
+  }
+
+  &__receipt-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    background: #FFF;
+    padding: 17px 21px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &__nav {
+      @extend %title-14;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 42px;
+    }
+
+    &__inner {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #408CFF;
+      border-radius: 20px;
+      padding: 15px 27px;
+
+      &__title {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 25px;
+
+        & >:first-child {
+          @extend %title-10;
+          font-weight: 500;
+          color: #0072BB;
+
+          & > span {
+            font-weight: 700;
+          }
+        }
+        & >:last-child {
+          @extend %title-10;
+          font-weight: 500;
+          color: #667085;
+        }
+      }
+
+      &__grid {
+        @extend %title-10;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 79px;
+        row-gap: 21px;
+
+        & >:nth-child(odd) {
+          font-weight: 500;
+          color: #667085;
+        }
+        & >:nth-child(even) {
+          font-weight: 500;
+          color: #0072BB;
+
+          & > span {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+
+    &__image {
+      margin-bottom: 16px;
     }
   }
 }
