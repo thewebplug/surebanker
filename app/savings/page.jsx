@@ -174,8 +174,9 @@ export default function Fund() {
             />
           </svg>
         </button>
-        <button className="savings__button-group__savings"
-        onClick={() => setOpen(true)}
+        <button
+          className="savings__button-group__savings"
+          onClick={() => setOpen(true)}
         >
           Savings
           <svg
@@ -265,119 +266,163 @@ export default function Fund() {
         </div>
       </div>
 
-      {open &&   <div className="savings__modal" onClick={handleModalClose}>
-        <div className="savings__modal__inner">
-        {stage === 1 && <>
-          <div className="savings__modal__inner__title">Fund Savings</div>
-          <div className="savings__modal__inner__subtitle">
-          You can fund your savings via the following channel
-          </div>
-          </>}
-        {stage === 2 && <>
-          <div className="savings__modal__inner__title">Fund  by debit card</div>
-          <div className="savings__modal__inner__subtitle">
-          You can fund your savings by transfer from a debit card
-          </div>
-          </>}
-        {stage === 3 && <>
-          <div className="savings__modal__inner__title">Fund  by Sure Banker</div>
-          <div className="savings__modal__inner__subtitle">
-          You can fund your savings from your surebanker account
-          </div>
-          </>}
-        {stage === 4 && <>
-          <div className="savings__modal__inner__title">Fund by Direct Transfer</div>
-          <div className="savings__modal__inner__subtitle">
-          You can fund your savings by direct transfer from other banks
-          </div>
-          </>}
-          {stage === 1 && 
-          <div className="savings__modal__inner__images">
+      {open && (
+        <div className="savings__modal" onClick={handleModalClose}>
+          <div className="savings__modal__inner">
+            {stage === 1 && (
+              <>
+                <div className="savings__modal__inner__title">Fund Savings</div>
+                <div className="savings__modal__inner__subtitle">
+                  You can fund your savings via the following channel
+                </div>
+              </>
+            )}
+            {stage === 2 && (
+              <>
+                <div className="savings__modal__inner__title">
+                  Fund by debit card
+                </div>
+                <div className="savings__modal__inner__subtitle">
+                  You can fund your savings by transfer from a debit card
+                </div>
+              </>
+            )}
+            {stage === 3 && (
+              <>
+                <div className="savings__modal__inner__title">
+                  Fund by Sure Banker
+                </div>
+                <div className="savings__modal__inner__subtitle">
+                  You can fund your savings from your surebanker account
+                </div>
+              </>
+            )}
+            {stage === 4 && (
+              <>
+                <div className="savings__modal__inner__title">
+                  Fund by Direct Transfer
+                </div>
+                <div className="savings__modal__inner__subtitle">
+                  You can fund your savings by direct transfer from other banks
+                </div>
+              </>
+            )}
+            {stage === 1 && (
+              <div className="savings__modal__inner__images">
+                <div
+                  className="savings__modal__inner__images__image"
+                  onClick={() => setStage(2)}
+                >
+                  <Image
+                    src="/assets/surebanker-card.png"
+                    objectFit="cover"
+                    layout="fill"
+                  />
+                </div>
+                <div
+                  className="savings__modal__inner__images__image"
+                  onClick={() => setStage(3)}
+                >
+                  <Image
+                    src="/assets/surebanker-banker.png"
+                    objectFit="cover"
+                    layout="fill"
+                  />
+                </div>
+                <div
+                  className="savings__modal__inner__images__image"
+                  onClick={() => setStage(4)}
+                >
+                  <Image
+                    src="/assets/surebanker-transfer.png"
+                    objectFit="cover"
+                    layout="fill"
+                  />
+                </div>
+              </div>
+            )}
 
-            <div className="savings__modal__inner__images__image"
-            onClick={() => setStage(2)}
-            >
-            <Image
-            src="/assets/surebanker-card.png"
-            objectFit="cover"
-            layout="fill"
-            />
+            {stage === 2 && (
+              <>
+                <label htmlFor="">Choose amount</label>
+
+                <div className="savings__modal__inner__cards">
+                  <div className="savings__modal__inner__cards__active">
+                    <span>NGN</span> 20,000
+                  </div>
+                  <div>
+                    <span>NGN</span> 10,000
+                  </div>
+                  <div>
+                    <span>NGN</span> 5,000
+                  </div>
+                  <div>
+                    <span>NGN</span> 500
+                  </div>
+                </div>
+              </>
+            )}
+            {stage === 2 || stage === 3 ? (
+              <div className="savings__modal__inner__amount">
+                <div>NGN</div>
+                <input
+                  type="text"
+                  placeholder="20,000"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+
+            {stage === 3 && (
+              <>
+                <div className="savings__modal__inner__note-title">Note</div>
+                <div className="savings__modal__inner__note-subtitle">
+                  Money will be deducted from your surebanker account
+                </div>
+              </>
+            )}
+
+            {stage === 4 && (
+              <>
+                <div className="savings__modal__inner__amount-copy-title">
+                  Bank - Surebanker
+                </div>
+                <div className="savings__modal__inner__amount-copy">
+                  <div>208123459</div>
+
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.1271 3.47028L4.125 5.0625V12.9406C4.125 14.2868 5.2163 15.3781 6.5625 15.3781L13.0247 15.3784C12.793 16.0336 12.168 16.5031 11.4333 16.5031H6.5625C4.59499 16.5031 3 14.9082 3 12.9406V5.0625C3 4.32697 3.47059 3.70134 4.1271 3.47028ZM13.3125 1.5C14.2444 1.5 15 2.25552 15 3.1875V12.9375C15 13.8694 14.2444 14.625 13.3125 14.625H6.5625C5.63052 14.625 4.875 13.8694 4.875 12.9375V3.1875C4.875 2.25552 5.63052 1.5 6.5625 1.5H13.3125Z"
+                      fill="#4440FF"
+                    />
+                  </svg>
+                </div>
+
+                <div className="savings__modal__inner__amount-copy-subtitle">
+                  Copy the account details above to fund your account
+                </div>
+              </>
+            )}
+            <div className="savings__modal__inner__button-group">
+              <button
+                className="savings__modal__inner__button-group__next"
+                onClick={handleNextStage}
+              >
+                Next
+              </button>
             </div>
-            <div className="savings__modal__inner__images__image"
-                        onClick={() => setStage(3)}
-
-            >
-            <Image
-            src="/assets/surebanker-banker.png"
-            objectFit="cover"
-            layout="fill"
-            />
-            </div>
-            <div className="savings__modal__inner__images__image"
-                        onClick={() => setStage(4)}
-            >
-            <Image
-            src="/assets/surebanker-transfer.png"
-            objectFit="cover"
-            layout="fill"
-            />
-            </div>
-          </div>
-          }
-
-          {stage === 2 && 
-          <>
-
-          <label htmlFor="">Choose amount</label>
-
-          <div className="savings__modal__inner__cards">
-            <div className="savings__modal__inner__cards__active"><span>NGN</span> 20,000</div>
-            <div><span>NGN</span> 10,000</div>
-            <div><span>NGN</span> 5,000</div>
-            <div><span>NGN</span> 500</div>
-          </div>
-            </>
-            }
-         {stage === 2 || stage === 3 ? <div className="savings__modal__inner__amount">
-            <div>NGN</div>
-            <input type="text" placeholder="20,000" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            </div> : ""}
-
-            {stage === 3 &&
-<>
-<div className="savings__modal__inner__note-title">Note</div>
-<div className="savings__modal__inner__note-subtitle">Money will be deducted from your surebanker account</div>
-</>
-
-            }
-
-{stage === 4 && 
-<>
-<div className="savings__modal__inner__amount-copy-title">
-Bank - Surebanker
-</div>
-<div className="savings__modal__inner__amount-copy">
-            <div>208123459</div>
-
-
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.1271 3.47028L4.125 5.0625V12.9406C4.125 14.2868 5.2163 15.3781 6.5625 15.3781L13.0247 15.3784C12.793 16.0336 12.168 16.5031 11.4333 16.5031H6.5625C4.59499 16.5031 3 14.9082 3 12.9406V5.0625C3 4.32697 3.47059 3.70134 4.1271 3.47028ZM13.3125 1.5C14.2444 1.5 15 2.25552 15 3.1875V12.9375C15 13.8694 14.2444 14.625 13.3125 14.625H6.5625C5.63052 14.625 4.875 13.8694 4.875 12.9375V3.1875C4.875 2.25552 5.63052 1.5 6.5625 1.5H13.3125Z" fill="#4440FF"/>
-</svg>
-
-            </div>
-
-            <div className="savings__modal__inner__amount-copy-subtitle">
-            Copy the account details above to fund your account
-</div>
-            </>
-            }
-          <div className="savings__modal__inner__button-group">
-            <button className="savings__modal__inner__button-group__next"
-            onClick={handleNextStage}
-            >Next</button>
           </div>
         </div>
-      </div>}
+      )}
 
       <Navigation />
     </div>
