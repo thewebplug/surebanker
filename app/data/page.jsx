@@ -272,8 +272,8 @@ export default function Data() {
             }}
           >
             <option value="">Select provider</option>
-            {providers?.map((provider) => (
-              <option value={provider.id}>{provider?.name}</option>
+            {providers?.map((provider, index) => (
+              <option key={index} value={provider.id}>{provider?.name}</option>
             ))}
           </select>
         </div>
