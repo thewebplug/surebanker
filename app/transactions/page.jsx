@@ -149,7 +149,7 @@ export default function Transaction() {
 
   const handleTransfer = async (e) => {
     e.preventDefault();
-    if (!bankDetailsVerified) {
+    if (tab === "bank" && !bankDetailsVerified) {
       alert("Please enter valid account details");
       return;
     }

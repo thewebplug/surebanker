@@ -214,6 +214,90 @@ margin-bottom: 39px;
         }
       }
 
+      &__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        margin-top: 12px;
+
+        & > div {
+          @extend %title-12;
+          font-weight: 400;
+          color: #4440FF;
+          width: 100%;
+          height: 35px;
+          border: 0.5px solid #408CFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+
+          & > span {
+            font-weight: 700;
+          } 
+
+        }
+
+        &__active {
+          background: #408CFF !important;
+          color: #FFFFFF !important;
+        }
+      }
+
+      &__note-title {
+        @extend %title-12;
+        font-weight: 700;
+        color: #FF40A7;
+        margin-bottom: 3px;
+      }
+      &__note-subtitle {
+        @extend %title-12;
+        font-weight: 400;
+        color: #667085;
+        margin-bottom: 46px;
+      }
+
+      &__amount-copy {
+        @extend %title-20;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 50px;
+        border: 0.3px solid rgba(68, 64, 255, 1);
+        border-radius: 6px;
+        padding: 0 14px;
+        background: rgba(248, 248, 248, 1);
+        margin-bottom: 10px;
+
+       
+        & > div {
+          @extend %title-20;
+          width: 100%;
+          font-weight: 700;
+            // height: 100%;
+            border: none;
+        }
+      }
+
+      &__amount-copy-title {
+        @extend %title-12;
+        font-weight: 600;
+        color: #000000;
+        margin-bottom: 8px;
+      }
+      &__amount-copy-subtitle {
+        @extend %title-10;
+        font-weight: 400;
+        color: #667085;
+        margin-bottom: 64px;
+      }
+
+
       &__input {
         @extend %primary-input;
       }
@@ -221,7 +305,7 @@ margin-bottom: 39px;
       &__button-group {
         display: grid;
         align-items: center;
-        grid-template-columns: 160px 160px;
+        grid-template-columns: 1fr;
         gap: 20px;
         margin-top: 57px;
         &__next {

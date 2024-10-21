@@ -29,7 +29,6 @@ export const walletToWallet = async (
     toWalletId,
     amount,
     fees,
-    type,
     remarks,
     token
 ) => {
@@ -44,7 +43,6 @@ export const walletToWallet = async (
     toWalletId,
     amount,
     fees,
-    type,
     remarks,
     token
   });
@@ -56,7 +54,6 @@ export const walletToWallet = async (
         toWalletId,
     amount,
     fees,
-    type,
     remarks
       },
       config
