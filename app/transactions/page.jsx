@@ -36,7 +36,18 @@ export default function Transaction() {
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
 
- 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setBankListOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleGetAccountInfo = async () => {
     const response = await getAccountDetails(
@@ -264,7 +275,7 @@ export default function Transaction() {
 
       <form className="transaction__form" onSubmit={handleTransfer}>
         <h1 className="transaction__title">
-          <div>Enter Amount To Transfersss</div>
+          <div>Enter Amount To Transfer</div>
           <div onClick={() => (window.location.href = "/transactions/history")}>
             See transaction History
           </div>
@@ -535,7 +546,7 @@ export default function Transaction() {
             </div>
 
             <label htmlFor="">Enter Bank Name</label>
-            <div className="transaction__input">
+            <div className="transaction__input" ref={dropdownRef}>
               <div></div>
               <input
                 type="text"
@@ -554,16 +565,7 @@ export default function Transaction() {
                 </div>
               )}
 
-              {bankListOpen && (
-                <div
-                  className="transaction__input__dropdown-cover"
-                  onClick={() => {
-                    if (bankListOpen) {
-                      setBankListOpen(false);
-                    }
-                  }}
-                ></div>
-              )}
+              
             </div>
             <div className="transaction__input-result"></div>
 
