@@ -9,7 +9,7 @@ import Chart from "chart.js/auto";
 
 export default function Fund() {
   const [option, setOption] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [stage, setStage] = useState(1);
   const [filterItem, setFilterItem] = useState("");
   const [transactionFilter, setTransactionFilter] = useState("");

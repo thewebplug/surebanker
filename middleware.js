@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 export function middleware(request) {
   // Define paths that don't require authentication
-  const publicPaths = ['/alt', '/alt/forgot-password', '/alt/login', '/_next/image', '_next/image'];
+  const publicPaths = ['/', '/register', '/forgot-password', '/login', '/_next/image', '_next/image'];
 
   // Check if the current path is in the public paths
   const isPublicPath = publicPaths.some(path => 
@@ -19,7 +19,7 @@ export function middleware(request) {
   const token = request.cookies.get('auth_token')?.value;
 
   if (!token) {
-    return NextResponse.redirect(new URL('/alt/login', request.url));
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   try {
@@ -29,7 +29,7 @@ export function middleware(request) {
     // Check if the token has expired
     if (decodedToken.exp * 1000 < Date.now()) {
       // Token has expired
-      const response = NextResponse.redirect(new URL('/alt/login', request.url));
+      const response = NextResponse.redirect(new URL('/login', request.url));
       
       // Remove the expired token from cookies
       response.cookies.delete('auth_token');
@@ -42,7 +42,7 @@ export function middleware(request) {
   } catch (error) {
     // If there's an error decoding the token, consider it invalid
     console.error('Error decoding token:', error);
-    const response = NextResponse.redirect(new URL('/alt/login', request.url));
+    const response = NextResponse.redirect(new URL('/login', request.url));
     response.cookies.delete('auth_token');
     return response;
   }

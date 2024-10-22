@@ -17,7 +17,7 @@ export default function Transaction() {
 
   const [open, setOpen] = useState(false);
   const [account, setAccount] = useState(false);
-  const [inputWidth, setInputWidth] = useState(90);
+  const [inputWidth, setInputWidth] = useState(80);
   const [banks, setBanks] = useState([]);
   const [filteredBanks, setFilteredBanks] = useState([]);
   const [bankCode, setBankCode] = useState("");
@@ -32,8 +32,10 @@ export default function Transaction() {
   const [receiptOpen, setReceiptOpen] = useState(false);
   const [bankDetailsVerified, setBankDetailsVerified] = useState(false);
   const [loading, setLoading] = useState(false);
+  let initialWidth = 80;
   let maxWidth = 300;
-  const inputRef = useRef(null);
+  const [expandingWidth, setExpandingWidth] = useState(initialWidth);
+  const expandingInputRef = useRef(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -122,32 +124,27 @@ export default function Transaction() {
     setBankListOpen(false);
   };
 
+  
   const getTextWidth = (text, font) => {
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
     context.font = font;
     return context.measureText(text).width;
   };
 
   useEffect(() => {
     const updateWidth = () => {
-      const input = inputRef.current;
+      const input = expandingInputRef.current;
       if (input) {
-        const textWidth = getTextWidth(
-          input.value,
-          getComputedStyle(input).font
-        );
-        const newWidth = Math.min(Math.max(90, textWidth + 10), maxWidth);
-        setInputWidth(newWidth);
+        const textWidth = getTextWidth(amount, getComputedStyle(input).font);
+        const newWidth = Math.min(Math.max(initialWidth, textWidth + 20), maxWidth);
+        setExpandingWidth(newWidth);
       }
     };
 
-    const input = inputRef.current;
-    console.log("input blaq", input);
+    updateWidth();
+  }, [amount, maxWidth, initialWidth]);
 
-    input.addEventListener("input", updateWidth);
-    return () => input.removeEventListener("input", updateWidth);
-  }, [maxWidth]);
 
   useEffect(() => {
     if (bankName?.trim()?.length > 0) {
@@ -285,9 +282,9 @@ export default function Transaction() {
           <input
             type="number"
             placeholder="0.00"
-            ref={inputRef}
-            style={{ width: `${inputWidth}px`, transition: "width 0.2s" }}
+            style={{ width: `${expandingWidth}px`, transition: 'width 0.2s' }}
             value={amount}
+            ref={expandingInputRef}
             onChange={(e) => setAmount(e.target.value)}
             required
           />
@@ -457,91 +454,33 @@ export default function Transaction() {
 
                   <div>Kuda</div>
                 </div>
-                {/* <div
+                <div
             onClick={() => {
               setBankName("")
               setBankCode("");
               setBankListOpen(true);
             }}
             >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 60 60"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="30" cy="30" r="30" fill="#F2FAFF" />
-                <path
-                  d="M45.0627 53.3352L33.8902 38.7968C33.2874 38.0125 33.3486 36.9052 34.0342 36.1921L36.0164 34.1302C36.5757 33.5485 37.4298 33.3599 38.182 33.6519L55.4155 40.3424C56.4397 40.74 56.9544 41.889 56.4963 42.8875C54.6879 46.8287 51.2009 52.4696 46.952 53.9832C46.2565 54.2309 45.5126 53.9206 45.0627 53.3352Z"
-                  fill="#D1EDFF"
-                />
-                <path
-                  d="M34.7005 29.7661V35.831H32.9417V34.9453C32.7621 35.253 32.5015 35.5055 32.1882 35.6753C31.864 35.8459 31.5022 35.9323 31.1359 35.9266C30.3782 35.9266 29.812 35.7152 29.4372 35.2922C29.0623 34.8693 28.8753 34.2313 28.8761 33.3782V29.7661H30.6801V33.4143C30.6801 34.1479 30.995 34.5147 31.6248 34.5147C31.9992 34.5147 32.3023 34.3873 32.534 34.1323C32.7657 33.8773 32.8813 33.5424 32.8809 33.1275V29.7661H34.7005ZM41.5977 27V35.831H39.8154V34.9339C39.6307 35.2457 39.3613 35.4986 39.0385 35.6633C38.6869 35.8428 38.2967 35.9332 37.902 35.9266C37.4093 35.9348 36.9255 35.7951 36.5129 35.5256C36.0968 35.2474 35.7673 34.8577 35.5622 34.4011C35.3349 33.92 35.2213 33.3678 35.2213 32.7444C35.2213 32.1211 35.3349 31.5729 35.5622 31.0998C35.767 30.6512 36.0945 30.2697 36.5069 29.9994C36.9238 29.7365 37.4086 29.6016 37.9014 29.6115C38.2875 29.6068 38.6691 29.6951 39.0138 29.8689C39.335 30.0278 39.6046 30.2745 39.7913 30.5803V27H41.5977ZM39.4594 34.0902C39.6999 33.7835 39.8202 33.3426 39.8202 32.7673C39.8202 32.2008 39.6985 31.7643 39.4552 31.4576C39.2119 31.1509 38.8711 30.9974 38.433 30.997C37.986 30.997 37.639 31.1485 37.3921 31.4516C37.1451 31.7547 37.0217 32.1852 37.0217 32.7432C37.0217 33.3173 37.1451 33.7619 37.3921 34.077C37.639 34.3921 37.986 34.5496 38.433 34.5496C38.8767 34.5504 39.2189 34.3973 39.4594 34.0902ZM48.4949 29.7661V35.831H46.712V34.9339C46.5273 35.2459 46.2576 35.4989 45.9345 35.6633C45.583 35.8423 45.1929 35.9323 44.7986 35.9254C44.3062 35.9388 43.821 35.8054 43.4046 35.5423C42.9882 35.2793 42.6594 34.8983 42.46 34.448C42.2327 33.9737 42.1191 33.4255 42.1191 32.8034C42.1191 32.1812 42.2327 31.6268 42.46 31.1401C42.6639 30.6813 42.9935 30.2896 43.4107 30.0102C43.8232 29.7418 44.3065 29.6029 44.7986 29.6115C45.1945 29.6052 45.5854 29.7 45.9345 29.887C46.2567 30.0582 46.5256 30.3147 46.712 30.6284V29.7661H48.4949ZM46.3536 34.0956C46.5941 33.7925 46.7144 33.354 46.7144 32.7799C46.7144 32.2059 46.5941 31.7649 46.3536 31.457C46.1131 31.1495 45.7701 30.996 45.3247 30.9964C44.8793 30.9968 44.5324 31.1565 44.2838 31.4756C44.0369 31.7964 43.9132 32.2391 43.9128 32.804C43.9124 33.3688 44.0341 33.8014 44.2778 34.1016C44.5212 34.4003 44.8701 34.5498 45.3247 34.5502C45.7709 34.5506 46.1139 34.3993 46.3536 34.0962V34.0956ZM28.5087 35.9164H26.2676L23.8563 33.1666V35.9164H22.0271V27H23.8563V32.4149L26.1581 29.7865H28.3512L25.7462 32.733L28.5087 35.9164ZM17.0156 35.9194L13.5051 31.8785L15.4221 35.9194H14.0932L12.1377 31.7998L12.9507 35.9194H12.1341L11.3205 31.7937V35.9194H11V27H11.3205V31.4498L12.1455 27H12.9597L12.1311 31.469L14.1245 27H15.439L13.4534 31.4528L17.0589 27H19.1191L15.3897 31.6067L19.1365 35.9194H17.0156Z"
-                  fill="#41276D"
-                />
-                <path
-                  d="M50.0095 35.8214C50.5565 35.8214 50.9999 35.378 50.9999 34.831C50.9999 34.284 50.5565 33.8406 50.0095 33.8406C49.4625 33.8406 49.0191 34.284 49.0191 34.831C49.0191 35.378 49.4625 35.8214 50.0095 35.8214Z"
-                  fill="#41276D"
-                />
-              </svg>
-
+             <svg
+                    width="60"
+                    height="60"
+                    viewBox="0 0 60 60"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="30" cy="30" r="30" fill="#F2FFF9" />
+                    <path
+                      d="M45.0627 53.3352L33.8902 38.7968C33.2874 38.0125 33.3486 36.9052 34.0342 36.1921L36.0164 34.1302C36.5757 33.5485 37.4298 33.3599 38.182 33.6519L55.4155 40.3424C56.4397 40.74 56.9544 41.889 56.4963 42.8875C54.6879 46.8287 51.2009 52.4696 46.952 53.9832C46.2565 54.2309 45.5126 53.9206 45.0627 53.3352Z"
+                      fill="#D1FFDE"
+                    />
+                    <path
+                      d="M28.9684 19.3246C29.583 18.8762 30.417 18.8762 31.0316 19.3246L38.4534 24.7406C39.4299 25.4531 38.9268 26.9983 37.7189 27.0003H22.2811C21.0732 26.9983 20.5701 25.4531 21.5466 24.7406L28.9684 19.3246ZM31 23.2503C31 22.698 30.5523 22.2503 30 22.2503C29.4477 22.2503 29 22.698 29 23.2503C29 23.8026 29.4477 24.2503 30 24.2503C30.5523 24.2503 31 23.8026 31 23.2503ZM29.25 33.0003H27.25V28.0003H29.25V33.0003ZM32.75 33.0003H30.75V28.0003H32.75V33.0003ZM36.5 33.0003H34.25V28.0003H36.5V33.0003ZM36.75 34.0003H23.25C22.0074 34.0003 21 35.0077 21 36.2503V36.7503C21 37.1645 21.3358 37.5003 21.75 37.5003H38.25C38.6642 37.5003 39 37.1645 39 36.7503V36.2503C39 35.0077 37.9926 34.0003 36.75 34.0003ZM25.75 33.0003H23.5V28.0003H25.75V33.0003Z"
+                      fill="#025949"
+                    />
+                  </svg>
               <div>Other</div>
-            </div> */}
-                <div
-                  onClick={() => {
-                    setAccountNo("1000074944");
-                    setBankName("VFD MICROFINANCE BANK");
-                    setBankCode("999999");
-                  }}
-                >
-                  <svg
-                    width="60"
-                    height="60"
-                    viewBox="0 0 60 60"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="30" cy="30" r="30" fill="#F2FFF9" />
-                    <path
-                      d="M45.0627 53.3352L33.8902 38.7968C33.2874 38.0125 33.3486 36.9052 34.0342 36.1921L36.0164 34.1302C36.5757 33.5485 37.4298 33.3599 38.182 33.6519L55.4155 40.3424C56.4397 40.74 56.9544 41.889 56.4963 42.8875C54.6879 46.8287 51.2009 52.4696 46.952 53.9832C46.2565 54.2309 45.5126 53.9206 45.0627 53.3352Z"
-                      fill="#D1FFDE"
-                    />
-                    <path
-                      d="M28.9684 19.3246C29.583 18.8762 30.417 18.8762 31.0316 19.3246L38.4534 24.7406C39.4299 25.4531 38.9268 26.9983 37.7189 27.0003H22.2811C21.0732 26.9983 20.5701 25.4531 21.5466 24.7406L28.9684 19.3246ZM31 23.2503C31 22.698 30.5523 22.2503 30 22.2503C29.4477 22.2503 29 22.698 29 23.2503C29 23.8026 29.4477 24.2503 30 24.2503C30.5523 24.2503 31 23.8026 31 23.2503ZM29.25 33.0003H27.25V28.0003H29.25V33.0003ZM32.75 33.0003H30.75V28.0003H32.75V33.0003ZM36.5 33.0003H34.25V28.0003H36.5V33.0003ZM36.75 34.0003H23.25C22.0074 34.0003 21 35.0077 21 36.2503V36.7503C21 37.1645 21.3358 37.5003 21.75 37.5003H38.25C38.6642 37.5003 39 37.1645 39 36.7503V36.2503C39 35.0077 37.9926 34.0003 36.75 34.0003ZM25.75 33.0003H23.5V28.0003H25.75V33.0003Z"
-                      fill="#025949"
-                    />
-                  </svg>
-
-                  <div>To VFD Account</div>
-                </div>
-                <div
-                  onClick={() => {
-                    setAccountNo("1111111103");
-                    setBankName("Keystone Bank");
-                    setBankCode("000002");
-                  }}
-                >
-                  <svg
-                    width="60"
-                    height="60"
-                    viewBox="0 0 60 60"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="30" cy="30" r="30" fill="#F2FFF9" />
-                    <path
-                      d="M45.0627 53.3352L33.8902 38.7968C33.2874 38.0125 33.3486 36.9052 34.0342 36.1921L36.0164 34.1302C36.5757 33.5485 37.4298 33.3599 38.182 33.6519L55.4155 40.3424C56.4397 40.74 56.9544 41.889 56.4963 42.8875C54.6879 46.8287 51.2009 52.4696 46.952 53.9832C46.2565 54.2309 45.5126 53.9206 45.0627 53.3352Z"
-                      fill="#D1FFDE"
-                    />
-                    <path
-                      d="M28.9684 19.3246C29.583 18.8762 30.417 18.8762 31.0316 19.3246L38.4534 24.7406C39.4299 25.4531 38.9268 26.9983 37.7189 27.0003H22.2811C21.0732 26.9983 20.5701 25.4531 21.5466 24.7406L28.9684 19.3246ZM31 23.2503C31 22.698 30.5523 22.2503 30 22.2503C29.4477 22.2503 29 22.698 29 23.2503C29 23.8026 29.4477 24.2503 30 24.2503C30.5523 24.2503 31 23.8026 31 23.2503ZM29.25 33.0003H27.25V28.0003H29.25V33.0003ZM32.75 33.0003H30.75V28.0003H32.75V33.0003ZM36.5 33.0003H34.25V28.0003H36.5V33.0003ZM36.75 34.0003H23.25C22.0074 34.0003 21 35.0077 21 36.2503V36.7503C21 37.1645 21.3358 37.5003 21.75 37.5003H38.25C38.6642 37.5003 39 37.1645 39 36.7503V36.2503C39 35.0077 37.9926 34.0003 36.75 34.0003ZM25.75 33.0003H23.5V28.0003H25.75V33.0003Z"
-                      fill="#025949"
-                    />
-                  </svg>
-
-                  <div>To one bank like that</div>
-                </div>
+            </div>
+                
               </div>
             </div>
 
@@ -599,6 +538,17 @@ export default function Transaction() {
           </>
         )}
 
+        <label htmlFor="">Amount</label>
+        <div className="transaction__input">
+          <div>₦</div>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+          />
+        </div>
+        <br />
         <label htmlFor="">Transaction Description</label>
         <div className="transaction__input">
           <div></div>
@@ -720,8 +670,8 @@ export default function Transaction() {
           <div className="transaction__receipt-modal__inner">
             <svg
               className="transaction__receipt-modal__image"
-              width="30"
-              height="34"
+              width="50"
+              height="54"
               viewBox="0 0 30 34"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
