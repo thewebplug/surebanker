@@ -2,16 +2,6 @@ import { NextResponse } from "next/server";
 import jwtDecode from "jwt-decode";
 
 export function middleware(request) {
-  // First, check if the request is for an image or static asset
-  if (
-    request.nextUrl.pathname.startsWith('/_next') ||
-    request.nextUrl.pathname.startsWith('/assets') ||  // Add this if your images are in /assets
-    request.nextUrl.pathname.includes('/images') ||    // Add this if you have an /images path
-    request.nextUrl.pathname === '/favicon.ico'
-  ) {
-    return NextResponse.next();
-  }
-
   // Define paths that don't require authentication
   const publicPaths = ["/", "/register", "/forgot-password", "/login"];
 
@@ -61,8 +51,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: [
-    // Skip all internal Next.js routes
-    "/((?!api|_next/static|_next/image|favicon.ico|assets|images).*)",
-  ],
+  matcher: ["/((?!api|_next/image).*)"],
 };
