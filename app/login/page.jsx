@@ -29,7 +29,7 @@ export default function Login() {
           token: response?.data?.token,
         },
       });
-      window.location.href = "/";
+      window.location.href = "/home";
     } else {
       alert(response?.data?.message)
     }
