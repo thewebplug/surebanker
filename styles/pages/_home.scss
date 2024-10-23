@@ -176,7 +176,7 @@
 
       &__title {
         @extend %title-8;
-        font-family: Nunito;
+        font-family: var(--font-nunito);
         position: absolute;
         color: rgba(222, 222, 222, 1);
         left: 19px;
@@ -262,7 +262,7 @@
           & > :last-child {
             & > span {
               @extend %title-8;
-              font-family: Nunito;
+              font-family: var(--font-nunito);
               font-weight: 700;
               color: rgba(0, 0, 0, 1);
             }
@@ -281,7 +281,7 @@
           }
         }
         &__subsubtitle {
-          font-family: Nunito;
+          font-family: var(--font-nunito);
           font-size: 6px;
           font-weight: 300;
           color: rgba(0, 0, 0, 1);
@@ -304,7 +304,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    font-family: Nunito;
+    font-family: var(--font-nunito);
     margin-bottom: 35px;
     cursor: pointer;
 

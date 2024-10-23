@@ -28,7 +28,7 @@
             color: #47b954;
             margin-top: 20px;
             margin-bottom: 10px;
-            font-family: Gabarito;
+            font-family: var(--font-gabarito);
             text-align: center;
         }
 
@@ -62,7 +62,7 @@
                 &__title {
                     font-size: 5.5rem;
                     font-weight: 900;
-                    font-family: Gabarito;
+                    font-family: var(--font-gabarito);
                     margin: 36px 0 0 36px;
                     text-transform: uppercase;
                     color: rgb(255, 222, 222);
@@ -124,7 +124,7 @@
                 font-weight: 900;
                 color: rgb(105, 210, 84);
                 text-align: center;
-                font-family: Gabarito;
+                font-family: var(--font-gabarito);
                 text-transform: uppercase;
             }
 
@@ -144,7 +144,7 @@
                 &__title {
                     font-size: 3.2rem;
                     font-weight: 900;
-                    font-family: Gabarito;
+                    font-family: var(--font-gabarito);
                     color: rgb(16, 9, 27);
                     margin-bottom: 10px;
                     text-transform: uppercase;

@@ -1,13 +1,25 @@
 import "../styles/index.scss";
 import ReduxProvider from "./store/ReduxProvider";
 import { Toast } from "./toast";
-import { Nunito } from 'next/font/google'
+import { Nunito, Gabarito, Raleway } from 'next/font/google'
 
 // Configure the font
 const nunito = Nunito({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-nunito', // Add this to use as CSS variable if needed
+})
+
+const gabarito = Gabarito({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-gabarito',
+})
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-raleway',
 })
 
 // Metadata configuration for App Router
@@ -26,9 +38,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" 
-    className={`${nunito.variable} ${nunito.className}`}
+    className={`${nunito.variable} ${gabarito.variable} ${raleway.variable}`}
     >
-      <body>
+      <body className={nunito.className}>
         <ReduxProvider>
           {children}
           <Toast />

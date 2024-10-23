@@ -42,7 +42,7 @@
           &__title {
             @extend %title-8;
             width:90%;
-            font-family: Nunito;
+            font-family: var(--font-nunito);
             position: absolute;
             color: rgba(222, 222, 222, 1);
             left: 19px;
