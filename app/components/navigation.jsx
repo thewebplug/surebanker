@@ -3,7 +3,7 @@ export default function Navigation() {
   return (
     <div className="mobile-navigation">
       <div
-            onClick={() => window.location.href = "/"}
+            onClick={() => window.location.href = "/home"}
 
       >
         <svg
