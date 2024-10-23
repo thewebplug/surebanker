@@ -3,8 +3,8 @@ import jwtDecode from 'jwt-decode';
 
 export function middleware(request) {
   // Define paths that don't require authentication
-  const publicPaths = ['/', '/register', '/forgot-password', '/login', '/_next/image', '_next/image'];
-
+  const publicPaths = ['/', '/register', '/forgot-password', '/login'];
+  
   // Check if the current path is in the public paths
   const isPublicPath = publicPaths.some(path => 
     request.nextUrl.pathname === path || request.nextUrl.pathname.startsWith(`${path}/`)
@@ -49,5 +49,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|/_next/image).*)']
+  matcher: ['/((?!api|_next/image).*)']
 }
